@@ -1,0 +1,22 @@
+{
+    "nome" : "Danilo",
+    "sobrenome" : "Canuto",
+    "idade" : 50,
+    "casado" : false,
+    "altura" : 1.86,
+    "cursos" : [
+        {
+            "Nome":"Dart",
+            "Dificuldade:" : 1
+        },
+        {
+            "Nome":"Flutter",
+            "Dificuldade:" : 2
+        }
+    ],
+    "Endereço": {
+        "cidade" : "São Paulo",
+        "pais" : "Brasil",
+        "numero" : 100
+    }
+}
