@@ -9,7 +9,7 @@ String request = "https://api.hgbrasil.com/finance?format=json&key=f59cfc35";
 void main() async {
   runApp(
     MaterialApp(
-      home: Home(),
+      home: const Home(),
       theme: ThemeData(
         hintColor: Colors.amber,
         primaryColor: Colors.white,
