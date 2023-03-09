@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:lista_de_tarefas/repositories/todo_repository.dart';
 
 void main() {
   runApp(const MaterialApp(
@@ -18,6 +19,7 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   final _toDoController = TextEditingController();
+  final TodoRepository todoRepository = TodoRepository();
 
   List _toDoList = [];
 
@@ -28,12 +30,12 @@ class _HomeState extends State<Home> {
   }
 
   void _addToDo() {
+    String text = _toDoController.text;
     setState(() {
-      Map<String, dynamic> newToDo = Map();
-      newToDo["title"] = _toDoController.text;
-      _toDoController.clear();
-      newToDo["ok"] = false;
-      _toDoList.add(newToDo);
+      Todo newTodo = Todo(
+        title: text,
+        ok: ""
+      )
     });
   }
 
