@@ -1,13 +1,11 @@
 import 'dart:convert';
-
 import 'package:shared_preferences/shared_preferences.dart';
-
 import '../models/todo.dart';
 
-const String todoListKey = 'todo_list';
+const todoListKey = 'todo_list';
 
 class TodoRepository {
-  late final SharedPreferences sharedPreferences;
+  late SharedPreferences sharedPreferences;
 
   Future<List<Todo>> getTodoList() async {
     sharedPreferences = await SharedPreferences.getInstance();

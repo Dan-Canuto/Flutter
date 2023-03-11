@@ -1,4 +1,8 @@
+import 'dart:convert';
+
 import 'package:shared_preferences/shared_preferences.dart';
+
+import '../models/todo.dart';
 
 class TodoRepository {
   TodoRepository() {
@@ -7,7 +11,7 @@ class TodoRepository {
 
   late SharedPreferences sharedPreferences;
 
-  void exemplo(){
-    sha
+  void saveTodoList(List<Todo> todos) {
+    final jsonString = json.encode(todos);
   }
 }

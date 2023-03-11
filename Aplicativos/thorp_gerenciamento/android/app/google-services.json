@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "945149119735",
+    "project_id": "gerenciamento-thorp",
+    "storage_bucket": "gerenciamento-thorp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:945149119735:android:33f8347dab22ea875ad7f2",
+        "android_client_info": {
+          "package_name": "com.example.thorp_gerenciamento"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "945149119735-7qo54e6vhev4u0a6kg365ac9os873l6q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAOVVNwWnaRPhi1HBKNr0zXcB19diHwcn8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "945149119735-7qo54e6vhev4u0a6kg365ac9os873l6q.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
