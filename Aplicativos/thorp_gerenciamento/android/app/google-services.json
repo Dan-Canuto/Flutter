@@ -29,6 +29,13 @@
             {
               "client_id": "945149119735-7qo54e6vhev4u0a6kg365ac9os873l6q.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "945149119735-cchme0f6iglledkl6jl4q8ferol9rvcu.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.thorpGerenciamento"
+              }
             }
           ]
         }
