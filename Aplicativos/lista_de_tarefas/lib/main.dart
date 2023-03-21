@@ -4,6 +4,8 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:lista_de_tarefas/repositories/todo_repository.dart';
 
+import 'models/todo.dart';
+
 void main() {
   runApp(const MaterialApp(
     home: Home(),
@@ -32,10 +34,7 @@ class _HomeState extends State<Home> {
   void _addToDo() {
     String text = _toDoController.text;
     setState(() {
-      Todo newTodo = Todo(
-        title: text,
-        ok: ""
-      )
+      Todo newTodo = Todo(title: text, ok: false);
     });
   }
 
