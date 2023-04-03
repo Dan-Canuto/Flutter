@@ -25,7 +25,7 @@ class _ProcessosPageState extends State<ProcessosPage> {
                   child: Container(
                     height: 50,
                     color: Colors.grey,
-                    child: Center(
+                    child: const Center(
                       child: Text(
                         "Processos",
                         style: TextStyle(

@@ -44,13 +44,13 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyDhVOH-ZcFyz7EJNNnq9etnI5gArDW1TyM',
-    appId: '1:945149119735:web:f68c991cf06d7ee15ad7f2',
-    messagingSenderId: '945149119735',
-    projectId: 'gerenciamento-thorp',
-    authDomain: 'gerenciamento-thorp.firebaseapp.com',
-    storageBucket: 'gerenciamento-thorp.appspot.com',
-    measurementId: 'G-8P4HNNKCGG',
+    apiKey: "AIzaSyDhVOH-ZcFyz7EJNNnq9etnI5gArDW1TyM",
+    authDomain: "gerenciamento-thorp.firebaseapp.com",
+    projectId: "gerenciamento-thorp",
+    storageBucket: "gerenciamento-thorp.appspot.com",
+    messagingSenderId: "945149119735",
+    appId: "1:945149119735:web:f68c991cf06d7ee15ad7f2",
+    measurementId: "G-8P4HNNKCGG",
   );
 
   static const FirebaseOptions android = FirebaseOptions(
@@ -67,7 +67,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '945149119735',
     projectId: 'gerenciamento-thorp',
     storageBucket: 'gerenciamento-thorp.appspot.com',
-    iosClientId: '945149119735-cchme0f6iglledkl6jl4q8ferol9rvcu.apps.googleusercontent.com',
+    iosClientId:
+        '945149119735-cchme0f6iglledkl6jl4q8ferol9rvcu.apps.googleusercontent.com',
     iosBundleId: 'com.example.thorpGerenciamento',
   );
 
@@ -77,7 +78,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '945149119735',
     projectId: 'gerenciamento-thorp',
     storageBucket: 'gerenciamento-thorp.appspot.com',
-    iosClientId: '945149119735-cchme0f6iglledkl6jl4q8ferol9rvcu.apps.googleusercontent.com',
+    iosClientId:
+        '945149119735-cchme0f6iglledkl6jl4q8ferol9rvcu.apps.googleusercontent.com',
     iosBundleId: 'com.example.thorpGerenciamento',
   );
 }

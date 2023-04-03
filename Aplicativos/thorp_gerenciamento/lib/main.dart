@@ -5,10 +5,13 @@ import 'package:thorp_gerenciamento/pages/financas_page.dart';
 import 'package:thorp_gerenciamento/pages/new_page.dart';
 import 'package:thorp_gerenciamento/pages/processos_page.dart';
 
-void main() async {
+import 'firebase_options.dart';
+
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
-  var db = FirebaseFirestore.instance;
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const MaterialApp(
     home: Home(),
   ));
@@ -59,7 +62,10 @@ class _HomeState extends State<Home> {
           ],
         ),
         appBar: AppBar(
-          title: const Text("THORP"),
+          title: const Text(
+            "THORP",
+            style: TextStyle(fontSize: 30, fontWeight: FontWeight.w700),
+          ),
           backgroundColor: Colors.black,
           centerTitle: true,
         ),

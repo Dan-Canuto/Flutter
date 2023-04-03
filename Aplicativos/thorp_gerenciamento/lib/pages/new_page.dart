@@ -1,6 +1,11 @@
+import 'dart:math';
+
+import 'package:calendar_date_picker2/calendar_date_picker2.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:intl/intl.dart';
 
 class NewPage extends StatefulWidget {
   const NewPage({super.key});
@@ -10,141 +15,524 @@ class NewPage extends StatefulWidget {
 }
 
 class _NewPageState extends State<NewPage> {
-  final TextEditingController ProcController = TextEditingController();
+  GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
+  String? _dtEmbarque;
+  Timestamp? _dtimeEmbarque;
+
+  String? _dtPrevChegada;
+  Timestamp? _dtimePrevChegada;
+
+  String? _dtPrevPagamento;
+  Timestamp? _dtimePrevPagamento;
+
+  final TextEditingController RefController = TextEditingController();
+  final TextEditingController AgtController = TextEditingController();
+  final TextEditingController EmpController = TextEditingController();
+  final TextEditingController VlrPrevistoController = TextEditingController();
+  final TextEditingController DtPrevPagamentoController =
+      TextEditingController();
+  final TextEditingController InfoEmbarqueController = TextEditingController();
+
+  void _resetFields() {
+    RefController.clear();
+    AgtController.clear();
+    EmpController.clear();
+    VlrPrevistoController.clear();
+    InfoEmbarqueController.clear();
+    setState(() {
+      _dtEmbarque = null;
+      _dtPrevChegada = null;
+      _dtPrevPagamento = null;
+      _formKey = GlobalKey<FormState>();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(4),
-        color: Colors.white,
-      ),
+      padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Container(
-            color: Colors.grey,
-            child: Text(
-              "Novo Processo",
-              style: TextStyle(fontSize: 50),
-              selectionColor: Colors.black,
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(10, 20, 10, 0),
-            child: TextFormField(
-              keyboardType: TextInputType.text,
-              controller: ProcController,
-              decoration: InputDecoration(
-                labelText: "Número de referência",
-                labelStyle: TextStyle(
-                  color: Colors.blue,
-                ),
-                border: OutlineInputBorder(),
-                focusedBorder: const OutlineInputBorder(
-                  borderSide: BorderSide(
-                    color: Colors.blue,
-                    width: 5,
+          Flexible(
+            child: Row(
+              children: [
+                Flexible(
+                  flex: 2,
+                  child: Container(
+                    decoration: const BoxDecoration(
+                      borderRadius: BorderRadius.only(
+                        bottomLeft: Radius.circular(30.0),
+                        bottomRight: Radius.circular(30.0),
+                      ),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black,
+                          blurRadius: 4,
+                          offset: Offset(0, 4),
+                        ),
+                      ],
+                      color: Colors.indigo,
+                    ),
+                    height: 50,
+                    child: const Center(
+                      child: Text(
+                        "Novo Processo",
+                        style: TextStyle(
+                          fontSize: 30,
+                          color: Colors.white,
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                    ),
                   ),
                 ),
-              ),
-              style: const TextStyle(
-                color: Colors.black,
-                fontSize: 25,
+              ],
+            ),
+          ),
+          Expanded(
+            flex: 5,
+            child: Form(
+              key: _formKey,
+              child: ListView(
+                shrinkWrap: true,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(0, 20, 0, 0),
+                    child: TextFormField(
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return 'Informe o valor';
+                        }
+                      },
+                      keyboardType: TextInputType.text,
+                      controller: RefController,
+                      decoration: const InputDecoration(
+                        labelText: "Número de referência",
+                        labelStyle: TextStyle(
+                          color: Colors.indigo,
+                        ),
+                        border: OutlineInputBorder(),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Colors.indigo,
+                            width: 3,
+                          ),
+                        ),
+                      ),
+                      style: const TextStyle(
+                        color: Colors.black,
+                        fontSize: 15,
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(0, 20, 0, 0),
+                    child: TextFormField(
+                      keyboardType: TextInputType.text,
+                      controller: AgtController,
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return 'Informe o valor';
+                        }
+                      },
+                      decoration: const InputDecoration(
+                        labelText: "Agente",
+                        labelStyle: TextStyle(
+                          color: Colors.indigo,
+                        ),
+                        border: OutlineInputBorder(),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Colors.indigo,
+                            width: 3,
+                          ),
+                        ),
+                      ),
+                      style: const TextStyle(
+                        color: Colors.black,
+                        fontSize: 15,
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(0, 20, 0, 0),
+                    child: TextFormField(
+                      keyboardType: TextInputType.text,
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return 'Informe o valor';
+                        }
+                      },
+                      controller: EmpController,
+                      decoration: const InputDecoration(
+                        labelText: "Nome da empresa",
+                        labelStyle: TextStyle(
+                          color: Colors.indigo,
+                        ),
+                        border: OutlineInputBorder(),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Colors.indigo,
+                            width: 3,
+                          ),
+                        ),
+                      ),
+                      style: const TextStyle(
+                        color: Colors.black,
+                        fontSize: 15,
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(0, 20, 0, 0),
+                    child: TextFormField(
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return 'Informe o valor';
+                        }
+                      },
+                      keyboardType: TextInputType.number,
+                      controller: VlrPrevistoController,
+                      decoration: const InputDecoration(
+                        labelText: "Comissão Prevista",
+                        prefixText: "R\$ ",
+                        labelStyle: TextStyle(
+                          color: Colors.indigo,
+                        ),
+                        border: OutlineInputBorder(),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Colors.indigo,
+                            width: 3,
+                          ),
+                        ),
+                      ),
+                      style: const TextStyle(
+                        color: Colors.black,
+                        fontSize: 15,
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(0, 20, 0, 0),
+                    child: TextFormField(
+                      keyboardType: TextInputType.text,
+                      controller: InfoEmbarqueController,
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return 'Informe o valor';
+                        }
+                      },
+                      decoration: const InputDecoration(
+                        labelText: "Informação do Embarque",
+                        labelStyle: TextStyle(
+                          color: Colors.indigo,
+                        ),
+                        border: OutlineInputBorder(),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Colors.indigo,
+                            width: 3,
+                          ),
+                        ),
+                      ),
+                      style: const TextStyle(
+                        color: Colors.black,
+                        fontSize: 15,
+                      ),
+                    ),
+                  ),
+                  ConstrainedBox(
+                    constraints: const BoxConstraints(minWidth: 150),
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(vertical: 20),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          Container(
+                            height: 100,
+                            decoration: const BoxDecoration(
+                                color: Colors.indigo,
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(10),
+                                ),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.black,
+                                    blurRadius: 2,
+                                    offset: Offset(0, 4),
+                                  ),
+                                ]),
+                            padding: const EdgeInsets.all(10),
+                            child: Column(
+                              children: [
+                                const Text(
+                                  "\nEmbarque\n",
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                  ),
+                                ),
+                                ElevatedButton(
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor: Colors.white,
+                                    shadowColor: Colors.green,
+                                  ),
+                                  onPressed: () async {
+                                    final value =
+                                        await showCalendarDatePicker2Dialog(
+                                      config:
+                                          CalendarDatePicker2WithActionButtonsConfig(),
+                                      value: [
+                                        _dtEmbarque == null
+                                            ? DateTime.now()
+                                            : _dtimeEmbarque!.toDate()
+                                      ],
+                                      context: context,
+                                      dialogSize: const Size(325, 400),
+                                    );
+                                    if (value != null) {
+                                      setState(() {
+                                        _dtEmbarque = DateFormat('dd/MM/yy')
+                                            .format(value[0]!);
+
+                                        _dtimeEmbarque =
+                                            Timestamp.fromDate(value[0]!);
+                                      });
+                                    }
+                                  },
+                                  child: Text(
+                                    _dtEmbarque == null
+                                        ? "Insira uma data"
+                                        : _dtEmbarque!,
+                                    style: const TextStyle(
+                                      color: Colors.indigo,
+                                    ),
+                                    textAlign: TextAlign.center,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          ConstrainedBox(
+                            constraints: const BoxConstraints(minWidth: 150),
+                            child: Container(
+                              height: 100,
+                              decoration: const BoxDecoration(
+                                  color: Colors.indigo,
+                                  borderRadius: BorderRadius.all(
+                                    Radius.circular(10),
+                                  ),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.black,
+                                      blurRadius: 2,
+                                      offset: Offset(0, 4),
+                                    ),
+                                  ]),
+                              padding: const EdgeInsets.all(10),
+                              child: Column(
+                                children: [
+                                  const Text(
+                                    "Prev. de \n Chegada\n",
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                  ElevatedButton(
+                                    style: ElevatedButton.styleFrom(
+                                      backgroundColor: Colors.white,
+                                      shadowColor: Colors.green,
+                                    ),
+                                    onPressed: () async {
+                                      final value =
+                                          await showCalendarDatePicker2Dialog(
+                                        config:
+                                            CalendarDatePicker2WithActionButtonsConfig(),
+                                        value: [
+                                          _dtPrevChegada == null
+                                              ? DateTime.now()
+                                              : _dtimePrevChegada!.toDate()
+                                        ],
+                                        context: context,
+                                        dialogSize: const Size(325, 400),
+                                      );
+                                      if (value != null) {
+                                        setState(() {
+                                          _dtPrevChegada =
+                                              DateFormat('dd/MM/yy')
+                                                  .format(value[0]!);
+
+                                          _dtimePrevChegada =
+                                              Timestamp.fromDate(value[0]!);
+                                        });
+                                      }
+                                    },
+                                    child: Text(
+                                      _dtPrevChegada == null
+                                          ? "Insira uma data"
+                                          : _dtPrevChegada!,
+                                      style: const TextStyle(
+                                        color: Colors.indigo,
+                                      ),
+                                      textAlign: TextAlign.center,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                          ConstrainedBox(
+                            constraints: const BoxConstraints(minWidth: 150),
+                            child: Container(
+                              height: 100,
+                              decoration: const BoxDecoration(
+                                  color: Colors.indigo,
+                                  borderRadius: BorderRadius.all(
+                                    Radius.circular(10),
+                                  ),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.black,
+                                      blurRadius: 2,
+                                      offset: Offset(0, 4),
+                                    ),
+                                  ]),
+                              padding: const EdgeInsets.all(10),
+                              child: Column(
+                                children: [
+                                  const Text(
+                                    "Prev. de\n Pagamento\n",
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                  ElevatedButton(
+                                    style: ElevatedButton.styleFrom(
+                                      backgroundColor: Colors.white,
+                                      shadowColor: Colors.green,
+                                    ),
+                                    onPressed: () async {
+                                      final value =
+                                          await showCalendarDatePicker2Dialog(
+                                        config:
+                                            CalendarDatePicker2WithActionButtonsConfig(),
+                                        value: [
+                                          _dtPrevPagamento == null
+                                              ? DateTime.now()
+                                              : _dtimePrevPagamento!.toDate()
+                                        ],
+                                        context: context,
+                                        dialogSize: const Size(325, 400),
+                                      );
+                                      if (value != null) {
+                                        setState(() {
+                                          _dtPrevPagamento =
+                                              DateFormat('dd/MM/yy')
+                                                  .format(value[0]!);
+
+                                          _dtimePrevPagamento =
+                                              Timestamp.fromDate(value[0]!);
+                                        });
+                                      }
+                                    },
+                                    child: Text(
+                                      _dtPrevPagamento == null
+                                          ? "Insira uma data"
+                                          : _dtPrevPagamento!,
+                                      style: const TextStyle(
+                                        color: Colors.indigo,
+                                      ),
+                                      textAlign: TextAlign.center,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(10, 20, 10, 0),
-            child: TextFormField(
-              keyboardType: TextInputType.text,
-              controller: ProcController,
-              decoration: InputDecoration(
-                labelText: "Agente",
-                labelStyle: TextStyle(
-                  color: Colors.amber,
+          Flexible(
+            child: Material(
+              child: Ink(
+                height: 50,
+                width: 200,
+                decoration: const BoxDecoration(
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(30.0),
+                    topRight: Radius.circular(30.0),
+                  ),
+                  color: Colors.indigo,
                 ),
-                border: OutlineInputBorder(),
-                focusedBorder: const OutlineInputBorder(
-                  borderSide: BorderSide(
-                    color: Colors.amber,
-                    width: 5,
+                child: InkWell(
+                  borderRadius: const BorderRadius.only(
+                    topLeft: Radius.circular(30.0),
+                    topRight: Radius.circular(30.0),
+                  ),
+                  onTap: () {
+                    bool validatorEmbarque = _dtEmbarque == null ? false : true;
+                    bool validatorChegada =
+                        _dtPrevChegada == null ? false : true;
+                    bool validatorPagamento =
+                        _dtPrevPagamento == null ? false : true;
+                    if (_formKey.currentState!.validate() &&
+                        validatorPagamento &&
+                        validatorEmbarque &&
+                        validatorChegada) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(content: Text('Processing Data')),
+                      );
+                    } else {
+                      String? text = !validatorPagamento
+                          ? "\nData de Pagamento não selecionada"
+                          : "";
+                      String? text1 = !validatorChegada
+                          ? "\nData de Chegada não selecionada"
+                          : "";
+                      String? text2 = !validatorEmbarque
+                          ? "\nData de Embarque não selecionada"
+                          : "";
+
+                      if (_dtEmbarque == null) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(content: Text(' $text $text1 $text2')));
+                      }
+                    }
+
+                    String referencia = RefController.text;
+                    String agente = AgtController.text;
+                    String empresa = EmpController.text;
+                    String comiss = VlrPrevistoController.text;
+                    String infoEmbarque = InfoEmbarqueController.text;
+                    String dtEmbarque = _dtEmbarque!;
+                    String dtPrevChegada = _dtPrevChegada!;
+                    String dtPrevPagamento = _dtPrevPagamento!;
+
+                    print(
+                        "$referencia \n $agente \n $empresa \n $comiss \n $infoEmbarque \n $dtEmbarque \n $dtPrevChegada \n $dtPrevPagamento");
+                  },
+                  highlightColor: Colors.white,
+                  child: Container(
+                    alignment: Alignment.center,
+                    child: const Text(
+                      "Salvar",
+                      style: TextStyle(
+                        fontSize: 30,
+                        color: Colors.white,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
                   ),
                 ),
-              ),
-              style: const TextStyle(
-                color: Colors.black,
-                fontSize: 25,
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(5, 20, 5, 0),
-            child: TextFormField(
-              keyboardType: TextInputType.text,
-              controller: ProcController,
-              decoration: InputDecoration(
-                labelText: "Número de referência",
-                labelStyle: TextStyle(
-                  color: Colors.amber,
-                ),
-                border: OutlineInputBorder(),
-                focusedBorder: const OutlineInputBorder(
-                  borderSide: BorderSide(
-                    color: Colors.amber,
-                    width: 5,
-                  ),
-                ),
-              ),
-              style: const TextStyle(
-                color: Colors.black,
-                fontSize: 25,
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(5, 20, 5, 0),
-            child: TextFormField(
-              keyboardType: TextInputType.text,
-              controller: ProcController,
-              decoration: InputDecoration(
-                labelText: "Número de referência",
-                labelStyle: TextStyle(
-                  color: Colors.amber,
-                ),
-                border: OutlineInputBorder(),
-                focusedBorder: const OutlineInputBorder(
-                  borderSide: BorderSide(
-                    color: Colors.amber,
-                    width: 5,
-                  ),
-                ),
-              ),
-              style: const TextStyle(
-                color: Colors.black,
-                fontSize: 25,
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(5, 20, 5, 0),
-            child: TextFormField(
-              keyboardType: TextInputType.text,
-              controller: ProcController,
-              decoration: InputDecoration(
-                labelText: "Número de referência",
-                labelStyle: TextStyle(
-                  color: Colors.amber,
-                ),
-                border: OutlineInputBorder(),
-                focusedBorder: const OutlineInputBorder(
-                  borderSide: BorderSide(
-                    color: Colors.amber,
-                    width: 5,
-                  ),
-                ),
-              ),
-              style: const TextStyle(
-                color: Colors.black,
-                fontSize: 25,
               ),
             ),
           ),
