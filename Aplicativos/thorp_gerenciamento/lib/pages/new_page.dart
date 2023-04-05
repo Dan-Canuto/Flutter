@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:intl/intl.dart';
+import 'package:thorp_gerenciamento/models/processos.dart';
 
 class NewPage extends StatefulWidget {
   const NewPage({super.key});
@@ -245,30 +246,26 @@ class _NewPageState extends State<NewPage> {
                     ),
                   ),
                   Container(
-                    padding: const EdgeInsets.symmetric(vertical: 10),
-                    margin: const EdgeInsets.symmetric(
-                        horizontal: 75, vertical: 20),
-                    height: 120,
+                    margin: const EdgeInsets.fromLTRB(100, 20, 100, 0),
+                    padding: const EdgeInsets.all(10),
+                    height: 100,
                     decoration: const BoxDecoration(
-                      color: Colors.indigo,
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(10),
-                      ),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black,
-                          blurRadius: 2,
-                          offset: Offset(0, 4),
+                        color: Colors.indigo,
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(10),
                         ),
-                      ],
-                    ),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black,
+                            blurRadius: 2,
+                            offset: Offset(0, 4),
+                          ),
+                        ]),
                     child: Column(
                       children: [
                         const Text(
                           "\nEmbarque\n",
                           style: TextStyle(
-                            fontWeight: FontWeight.w800,
-                            fontSize: 13,
                             color: Colors.white,
                           ),
                         ),
@@ -312,100 +309,27 @@ class _NewPageState extends State<NewPage> {
                     ),
                   ),
                   Container(
-                    padding: const EdgeInsets.symmetric(vertical: 10),
-                    margin: const EdgeInsets.symmetric(
-                        horizontal: 75, vertical: 20),
-                    height: 120,
+                    margin: const EdgeInsets.fromLTRB(100, 20, 100, 0),
+                    padding: const EdgeInsets.all(10),
+                    height: 100,
                     decoration: const BoxDecoration(
-                      color: Colors.indigo,
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(10),
-                      ),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black,
-                          blurRadius: 2,
-                          offset: Offset(0, 4),
+                        color: Colors.indigo,
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(10),
                         ),
-                      ],
-                    ),
-                    child: Column(
-                      children: [
-                        const Text(
-                          "\nPrev. de Pagamento\n",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontSize: 13,
-                            fontWeight: FontWeight.w800,
-                            color: Colors.white,
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black,
+                            blurRadius: 2,
+                            offset: Offset(0, 4),
                           ),
-                        ),
-                        ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.white,
-                            shadowColor: Colors.green,
-                          ),
-                          onPressed: () async {
-                            final value = await showCalendarDatePicker2Dialog(
-                              config:
-                                  CalendarDatePicker2WithActionButtonsConfig(),
-                              value: [
-                                _dtPrevPagamento == null
-                                    ? DateTime.now()
-                                    : _dtimePrevPagamento!.toDate()
-                              ],
-                              context: context,
-                              dialogSize: const Size(325, 400),
-                            );
-                            if (value != null) {
-                              setState(() {
-                                _dtPrevPagamento =
-                                    DateFormat('dd/MM/yyyy').format(value[0]!);
-
-                                _dtimePrevPagamento =
-                                    Timestamp.fromDate(value[0]!);
-                              });
-                            }
-                          },
-                          child: Text(
-                            _dtPrevPagamento == null
-                                ? "Insira uma data"
-                                : _dtPrevPagamento!,
-                            style: const TextStyle(
-                              color: Colors.indigo,
-                            ),
-                            textAlign: TextAlign.center,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Container(
-                    padding: const EdgeInsets.symmetric(vertical: 10),
-                    margin: const EdgeInsets.symmetric(
-                        horizontal: 75, vertical: 20),
-                    height: 120,
-                    decoration: const BoxDecoration(
-                      color: Colors.indigo,
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(10),
-                      ),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black,
-                          blurRadius: 2,
-                          offset: Offset(0, 4),
-                        ),
-                      ],
-                    ),
+                        ]),
                     child: Column(
                       children: [
                         const Text(
                           "\nPrev. de Chegada\n",
                           textAlign: TextAlign.center,
                           style: TextStyle(
-                            fontSize: 13,
-                            fontWeight: FontWeight.w800,
                             color: Colors.white,
                           ),
                         ),
@@ -449,6 +373,71 @@ class _NewPageState extends State<NewPage> {
                       ],
                     ),
                   ),
+                  Container(
+                    margin: const EdgeInsets.fromLTRB(100, 20, 100, 20),
+                    padding: const EdgeInsets.all(10),
+                    height: 100,
+                    decoration: const BoxDecoration(
+                        color: Colors.indigo,
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(10),
+                        ),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black,
+                            blurRadius: 2,
+                            offset: Offset(0, 4),
+                          ),
+                        ]),
+                    child: Column(
+                      children: [
+                        const Text(
+                          "\nPrev. de Pagamento\n",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            color: Colors.white,
+                          ),
+                        ),
+                        ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.white,
+                            shadowColor: Colors.green,
+                          ),
+                          onPressed: () async {
+                            final value = await showCalendarDatePicker2Dialog(
+                              config:
+                                  CalendarDatePicker2WithActionButtonsConfig(),
+                              value: [
+                                _dtPrevPagamento == null
+                                    ? DateTime.now()
+                                    : _dtimePrevPagamento!.toDate()
+                              ],
+                              context: context,
+                              dialogSize: const Size(325, 400),
+                            );
+                            if (value != null) {
+                              setState(() {
+                                _dtPrevPagamento =
+                                    DateFormat('dd/MM/yyyy').format(value[0]!);
+
+                                _dtimePrevPagamento =
+                                    Timestamp.fromDate(value[0]!);
+                              });
+                            }
+                          },
+                          child: Text(
+                            _dtPrevPagamento == null
+                                ? "Insira uma data"
+                                : _dtPrevPagamento!,
+                            style: const TextStyle(
+                              color: Colors.indigo,
+                            ),
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
                 ],
               ),
             ),
@@ -483,6 +472,7 @@ class _NewPageState extends State<NewPage> {
                       ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(content: Text('Processing Data')),
                       );
+
                       String referencia = RefController.text;
                       String agente = AgtController.text;
                       String empresa = EmpController.text;
@@ -491,11 +481,21 @@ class _NewPageState extends State<NewPage> {
                       String dtEmbarque = _dtEmbarque!;
                       String dtPrevChegada = _dtPrevChegada!;
                       String dtPrevPagamento = _dtPrevPagamento!;
+
+                      Processos newProc = Processos(
+                          referencia,
+                          agente,
+                          empresa,
+                          _dtimeEmbarque!,
+                          _dtimePrevChegada!,
+                          comiss,
+                          _dtimePrevPagamento!);
+
                       print(
                           "$referencia \n $agente \n $empresa \n $comiss \n $infoEmbarque \n $dtEmbarque \n $dtPrevChegada \n $dtPrevPagamento");
                     } else {
                       String? text = !validatorPagamento
-                          ? "Data de Pagamento não selecionada"
+                          ? "\nData de Pagamento não selecionada"
                           : "";
                       String? text1 = !validatorChegada
                           ? "\nData de Chegada não selecionada"
