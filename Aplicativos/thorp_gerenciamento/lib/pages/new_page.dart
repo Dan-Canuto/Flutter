@@ -244,217 +244,209 @@ class _NewPageState extends State<NewPage> {
                       ),
                     ),
                   ),
-                  ConstrainedBox(
-                    constraints: const BoxConstraints(minWidth: 150),
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(vertical: 20),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          Container(
-                            height: 100,
-                            decoration: const BoxDecoration(
-                                color: Colors.indigo,
-                                borderRadius: BorderRadius.all(
-                                  Radius.circular(10),
-                                ),
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Colors.black,
-                                    blurRadius: 2,
-                                    offset: Offset(0, 4),
-                                  ),
-                                ]),
-                            padding: const EdgeInsets.all(10),
-                            child: Column(
-                              children: [
-                                const Text(
-                                  "\nEmbarque\n",
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                  ),
-                                ),
-                                ElevatedButton(
-                                  style: ElevatedButton.styleFrom(
-                                    backgroundColor: Colors.white,
-                                    shadowColor: Colors.green,
-                                  ),
-                                  onPressed: () async {
-                                    final value =
-                                        await showCalendarDatePicker2Dialog(
-                                      config:
-                                          CalendarDatePicker2WithActionButtonsConfig(),
-                                      value: [
-                                        _dtEmbarque == null
-                                            ? DateTime.now()
-                                            : _dtimeEmbarque!.toDate()
-                                      ],
-                                      context: context,
-                                      dialogSize: const Size(325, 400),
-                                    );
-                                    if (value != null) {
-                                      setState(() {
-                                        _dtEmbarque = DateFormat('dd/MM/yy')
-                                            .format(value[0]!);
-
-                                        _dtimeEmbarque =
-                                            Timestamp.fromDate(value[0]!);
-                                      });
-                                    }
-                                  },
-                                  child: Text(
-                                    _dtEmbarque == null
-                                        ? "Insira uma data"
-                                        : _dtEmbarque!,
-                                    style: const TextStyle(
-                                      color: Colors.indigo,
-                                    ),
-                                    textAlign: TextAlign.center,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          ConstrainedBox(
-                            constraints: const BoxConstraints(minWidth: 150),
-                            child: Container(
-                              height: 100,
-                              decoration: const BoxDecoration(
-                                  color: Colors.indigo,
-                                  borderRadius: BorderRadius.all(
-                                    Radius.circular(10),
-                                  ),
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: Colors.black,
-                                      blurRadius: 2,
-                                      offset: Offset(0, 4),
-                                    ),
-                                  ]),
-                              padding: const EdgeInsets.all(10),
-                              child: Column(
-                                children: [
-                                  const Text(
-                                    "Prev. de \n Chegada\n",
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                  ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                      backgroundColor: Colors.white,
-                                      shadowColor: Colors.green,
-                                    ),
-                                    onPressed: () async {
-                                      final value =
-                                          await showCalendarDatePicker2Dialog(
-                                        config:
-                                            CalendarDatePicker2WithActionButtonsConfig(),
-                                        value: [
-                                          _dtPrevChegada == null
-                                              ? DateTime.now()
-                                              : _dtimePrevChegada!.toDate()
-                                        ],
-                                        context: context,
-                                        dialogSize: const Size(325, 400),
-                                      );
-                                      if (value != null) {
-                                        setState(() {
-                                          _dtPrevChegada =
-                                              DateFormat('dd/MM/yy')
-                                                  .format(value[0]!);
-
-                                          _dtimePrevChegada =
-                                              Timestamp.fromDate(value[0]!);
-                                        });
-                                      }
-                                    },
-                                    child: Text(
-                                      _dtPrevChegada == null
-                                          ? "Insira uma data"
-                                          : _dtPrevChegada!,
-                                      style: const TextStyle(
-                                        color: Colors.indigo,
-                                      ),
-                                      textAlign: TextAlign.center,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                          ConstrainedBox(
-                            constraints: const BoxConstraints(minWidth: 150),
-                            child: Container(
-                              height: 100,
-                              decoration: const BoxDecoration(
-                                  color: Colors.indigo,
-                                  borderRadius: BorderRadius.all(
-                                    Radius.circular(10),
-                                  ),
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: Colors.black,
-                                      blurRadius: 2,
-                                      offset: Offset(0, 4),
-                                    ),
-                                  ]),
-                              padding: const EdgeInsets.all(10),
-                              child: Column(
-                                children: [
-                                  const Text(
-                                    "Prev. de\n Pagamento\n",
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                  ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                      backgroundColor: Colors.white,
-                                      shadowColor: Colors.green,
-                                    ),
-                                    onPressed: () async {
-                                      final value =
-                                          await showCalendarDatePicker2Dialog(
-                                        config:
-                                            CalendarDatePicker2WithActionButtonsConfig(),
-                                        value: [
-                                          _dtPrevPagamento == null
-                                              ? DateTime.now()
-                                              : _dtimePrevPagamento!.toDate()
-                                        ],
-                                        context: context,
-                                        dialogSize: const Size(325, 400),
-                                      );
-                                      if (value != null) {
-                                        setState(() {
-                                          _dtPrevPagamento =
-                                              DateFormat('dd/MM/yy')
-                                                  .format(value[0]!);
-
-                                          _dtimePrevPagamento =
-                                              Timestamp.fromDate(value[0]!);
-                                        });
-                                      }
-                                    },
-                                    child: Text(
-                                      _dtPrevPagamento == null
-                                          ? "Insira uma data"
-                                          : _dtPrevPagamento!,
-                                      style: const TextStyle(
-                                        color: Colors.indigo,
-                                      ),
-                                      textAlign: TextAlign.center,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ],
+                  Container(
+                    padding: const EdgeInsets.symmetric(vertical: 10),
+                    margin: const EdgeInsets.symmetric(
+                        horizontal: 75, vertical: 20),
+                    height: 120,
+                    decoration: const BoxDecoration(
+                      color: Colors.indigo,
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(10),
                       ),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black,
+                          blurRadius: 2,
+                          offset: Offset(0, 4),
+                        ),
+                      ],
+                    ),
+                    child: Column(
+                      children: [
+                        const Text(
+                          "\nEmbarque\n",
+                          style: TextStyle(
+                            fontWeight: FontWeight.w800,
+                            fontSize: 13,
+                            color: Colors.white,
+                          ),
+                        ),
+                        ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.white,
+                            shadowColor: Colors.green,
+                          ),
+                          onPressed: () async {
+                            final value = await showCalendarDatePicker2Dialog(
+                              config:
+                                  CalendarDatePicker2WithActionButtonsConfig(),
+                              value: [
+                                _dtEmbarque == null
+                                    ? DateTime.now()
+                                    : _dtimeEmbarque!.toDate()
+                              ],
+                              context: context,
+                              dialogSize: const Size(325, 400),
+                            );
+                            if (value != null) {
+                              setState(() {
+                                _dtEmbarque =
+                                    DateFormat('dd/MM/yyyy').format(value[0]!);
+
+                                _dtimeEmbarque = Timestamp.fromDate(value[0]!);
+                              });
+                            }
+                          },
+                          child: Text(
+                            _dtEmbarque == null
+                                ? "Insira uma data"
+                                : _dtEmbarque!,
+                            style: const TextStyle(
+                              color: Colors.indigo,
+                            ),
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Container(
+                    padding: const EdgeInsets.symmetric(vertical: 10),
+                    margin: const EdgeInsets.symmetric(
+                        horizontal: 75, vertical: 20),
+                    height: 120,
+                    decoration: const BoxDecoration(
+                      color: Colors.indigo,
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(10),
+                      ),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black,
+                          blurRadius: 2,
+                          offset: Offset(0, 4),
+                        ),
+                      ],
+                    ),
+                    child: Column(
+                      children: [
+                        const Text(
+                          "\nPrev. de Pagamento\n",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: 13,
+                            fontWeight: FontWeight.w800,
+                            color: Colors.white,
+                          ),
+                        ),
+                        ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.white,
+                            shadowColor: Colors.green,
+                          ),
+                          onPressed: () async {
+                            final value = await showCalendarDatePicker2Dialog(
+                              config:
+                                  CalendarDatePicker2WithActionButtonsConfig(),
+                              value: [
+                                _dtPrevPagamento == null
+                                    ? DateTime.now()
+                                    : _dtimePrevPagamento!.toDate()
+                              ],
+                              context: context,
+                              dialogSize: const Size(325, 400),
+                            );
+                            if (value != null) {
+                              setState(() {
+                                _dtPrevPagamento =
+                                    DateFormat('dd/MM/yyyy').format(value[0]!);
+
+                                _dtimePrevPagamento =
+                                    Timestamp.fromDate(value[0]!);
+                              });
+                            }
+                          },
+                          child: Text(
+                            _dtPrevPagamento == null
+                                ? "Insira uma data"
+                                : _dtPrevPagamento!,
+                            style: const TextStyle(
+                              color: Colors.indigo,
+                            ),
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Container(
+                    padding: const EdgeInsets.symmetric(vertical: 10),
+                    margin: const EdgeInsets.symmetric(
+                        horizontal: 75, vertical: 20),
+                    height: 120,
+                    decoration: const BoxDecoration(
+                      color: Colors.indigo,
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(10),
+                      ),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black,
+                          blurRadius: 2,
+                          offset: Offset(0, 4),
+                        ),
+                      ],
+                    ),
+                    child: Column(
+                      children: [
+                        const Text(
+                          "\nPrev. de Chegada\n",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: 13,
+                            fontWeight: FontWeight.w800,
+                            color: Colors.white,
+                          ),
+                        ),
+                        ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.white,
+                            shadowColor: Colors.green,
+                          ),
+                          onPressed: () async {
+                            final value = await showCalendarDatePicker2Dialog(
+                              config:
+                                  CalendarDatePicker2WithActionButtonsConfig(),
+                              value: [
+                                _dtPrevChegada == null
+                                    ? DateTime.now()
+                                    : _dtimePrevChegada!.toDate()
+                              ],
+                              context: context,
+                              dialogSize: const Size(325, 400),
+                            );
+                            if (value != null) {
+                              setState(() {
+                                _dtPrevChegada =
+                                    DateFormat('dd/MM/yyyy').format(value[0]!);
+
+                                _dtimePrevChegada =
+                                    Timestamp.fromDate(value[0]!);
+                              });
+                            }
+                          },
+                          child: Text(
+                            _dtPrevChegada == null
+                                ? "Insira uma data"
+                                : _dtPrevChegada!,
+                            style: const TextStyle(
+                              color: Colors.indigo,
+                            ),
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ],
@@ -491,9 +483,19 @@ class _NewPageState extends State<NewPage> {
                       ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(content: Text('Processing Data')),
                       );
+                      String referencia = RefController.text;
+                      String agente = AgtController.text;
+                      String empresa = EmpController.text;
+                      String comiss = VlrPrevistoController.text;
+                      String infoEmbarque = InfoEmbarqueController.text;
+                      String dtEmbarque = _dtEmbarque!;
+                      String dtPrevChegada = _dtPrevChegada!;
+                      String dtPrevPagamento = _dtPrevPagamento!;
+                      print(
+                          "$referencia \n $agente \n $empresa \n $comiss \n $infoEmbarque \n $dtEmbarque \n $dtPrevChegada \n $dtPrevPagamento");
                     } else {
                       String? text = !validatorPagamento
-                          ? "\nData de Pagamento não selecionada"
+                          ? "Data de Pagamento não selecionada"
                           : "";
                       String? text1 = !validatorChegada
                           ? "\nData de Chegada não selecionada"
@@ -502,23 +504,13 @@ class _NewPageState extends State<NewPage> {
                           ? "\nData de Embarque não selecionada"
                           : "";
 
-                      if (_dtEmbarque == null) {
+                      if (!validatorPagamento ||
+                          !validatorChegada ||
+                          !validatorEmbarque) {
                         ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(content: Text(' $text $text1 $text2')));
+                            SnackBar(content: Text('$text$text1$text2')));
                       }
                     }
-
-                    String referencia = RefController.text;
-                    String agente = AgtController.text;
-                    String empresa = EmpController.text;
-                    String comiss = VlrPrevistoController.text;
-                    String infoEmbarque = InfoEmbarqueController.text;
-                    String dtEmbarque = _dtEmbarque!;
-                    String dtPrevChegada = _dtPrevChegada!;
-                    String dtPrevPagamento = _dtPrevPagamento!;
-
-                    print(
-                        "$referencia \n $agente \n $empresa \n $comiss \n $infoEmbarque \n $dtEmbarque \n $dtPrevChegada \n $dtPrevPagamento");
                   },
                   highlightColor: Colors.white,
                   child: Container(
