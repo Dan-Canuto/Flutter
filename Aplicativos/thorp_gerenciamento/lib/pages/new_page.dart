@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:thorp_gerenciamento/main.dart';
 import 'package:calendar_date_picker2/calendar_date_picker2.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -7,6 +8,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:intl/intl.dart';
 import 'package:thorp_gerenciamento/models/processos.dart';
+import 'package:uuid/uuid.dart';
 
 class NewPage extends StatefulWidget {
   const NewPage({super.key});
@@ -16,6 +18,8 @@ class NewPage extends StatefulWidget {
 }
 
 class _NewPageState extends State<NewPage> {
+  FirebaseFirestore db = FirebaseFirestore.instance;
+
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   String? _dtEmbarque;
@@ -248,7 +252,7 @@ class _NewPageState extends State<NewPage> {
                   Container(
                     margin: const EdgeInsets.fromLTRB(100, 20, 100, 0),
                     padding: const EdgeInsets.all(10),
-                    height: 100,
+                    height: 120,
                     decoration: const BoxDecoration(
                         color: Colors.indigo,
                         borderRadius: BorderRadius.all(
@@ -311,7 +315,7 @@ class _NewPageState extends State<NewPage> {
                   Container(
                     margin: const EdgeInsets.fromLTRB(100, 20, 100, 0),
                     padding: const EdgeInsets.all(10),
-                    height: 100,
+                    height: 120,
                     decoration: const BoxDecoration(
                         color: Colors.indigo,
                         borderRadius: BorderRadius.all(
@@ -376,7 +380,7 @@ class _NewPageState extends State<NewPage> {
                   Container(
                     margin: const EdgeInsets.fromLTRB(100, 20, 100, 20),
                     padding: const EdgeInsets.all(10),
-                    height: 100,
+                    height: 120,
                     decoration: const BoxDecoration(
                         color: Colors.indigo,
                         borderRadius: BorderRadius.all(
@@ -459,59 +463,7 @@ class _NewPageState extends State<NewPage> {
                     topLeft: Radius.circular(30.0),
                     topRight: Radius.circular(30.0),
                   ),
-                  onTap: () {
-                    bool validatorEmbarque = _dtEmbarque == null ? false : true;
-                    bool validatorChegada =
-                        _dtPrevChegada == null ? false : true;
-                    bool validatorPagamento =
-                        _dtPrevPagamento == null ? false : true;
-                    if (_formKey.currentState!.validate() &&
-                        validatorPagamento &&
-                        validatorEmbarque &&
-                        validatorChegada) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(content: Text('Processing Data')),
-                      );
-
-                      String referencia = RefController.text;
-                      String agente = AgtController.text;
-                      String empresa = EmpController.text;
-                      String comiss = VlrPrevistoController.text;
-                      String infoEmbarque = InfoEmbarqueController.text;
-                      String dtEmbarque = _dtEmbarque!;
-                      String dtPrevChegada = _dtPrevChegada!;
-                      String dtPrevPagamento = _dtPrevPagamento!;
-
-                      Processos newProc = Processos(
-                          referencia,
-                          agente,
-                          empresa,
-                          _dtimeEmbarque!,
-                          _dtimePrevChegada!,
-                          comiss,
-                          _dtimePrevPagamento!);
-
-                      print(
-                          "$referencia \n $agente \n $empresa \n $comiss \n $infoEmbarque \n $dtEmbarque \n $dtPrevChegada \n $dtPrevPagamento");
-                    } else {
-                      String? text = !validatorPagamento
-                          ? "\nData de Pagamento não selecionada"
-                          : "";
-                      String? text1 = !validatorChegada
-                          ? "\nData de Chegada não selecionada"
-                          : "";
-                      String? text2 = !validatorEmbarque
-                          ? "\nData de Embarque não selecionada"
-                          : "";
-
-                      if (!validatorPagamento ||
-                          !validatorChegada ||
-                          !validatorEmbarque) {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(content: Text('$text$text1$text2')));
-                      }
-                    }
-                  },
+                  onTap: enviarProc,
                   highlightColor: Colors.white,
                   child: Container(
                     alignment: Alignment.center,
@@ -531,5 +483,87 @@ class _NewPageState extends State<NewPage> {
         ],
       ),
     );
+  }
+
+  void saveProc(Processo proc) {
+    final id = Uuid().v1();
+    var proce = <String, dynamic>{
+      'referencia': proc.referencia,
+      'agente': proc.agente,
+      'empresa': proc.empresa,
+      'dataEmbarque': proc.dataEmbarque,
+      'dataPrevChegada': proc.dataPrevChegada,
+      'dataChegada': proc.dataChegada,
+      'dataPagamento': proc.dataPagamento,
+      'statusChegada': proc.statusChegada,
+      'statusPagamento': proc.statusPagamento,
+      'infoEmbarque': proc.infoEmbarque,
+      'valorPrevisto': proc.valorPrevisto,
+      'dataPrevPagamento': proc.dataPrevPagamento
+    };
+    db.collection("Processos").doc(id).set(proce);
+  }
+
+  void enviarProc() {
+    bool validatorEmbarque = _dtEmbarque == null ? false : true;
+    bool validatorChegada = _dtPrevChegada == null ? false : true;
+    bool validatorPagamento = _dtPrevPagamento == null ? false : true;
+    if (_formKey.currentState!.validate() &&
+        validatorPagamento &&
+        validatorEmbarque &&
+        validatorChegada) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Novo processo criado!!')),
+      );
+
+      String referencia = RefController.text;
+      String agente = AgtController.text;
+      String empresa = EmpController.text;
+      String comiss = VlrPrevistoController.text;
+      String infoEmbarque = InfoEmbarqueController.text;
+      String dtEmbarque = _dtEmbarque!;
+      String dtPrevChegada = _dtPrevChegada!;
+      String dtPrevPagamento = _dtPrevPagamento!;
+
+      Processo newProc = Processo(
+          referencia,
+          agente,
+          empresa,
+          _dtimeEmbarque!,
+          _dtimePrevChegada!,
+          comiss,
+          _dtimePrevPagamento!,
+          null,
+          null,
+          infoEmbarque);
+
+      saveProc(newProc);
+
+      setState(() {
+        RefController.clear();
+        AgtController.clear();
+        EmpController.clear();
+        VlrPrevistoController.clear();
+        InfoEmbarqueController.clear();
+        _dtEmbarque = null;
+        _dtPrevChegada = null;
+        _dtPrevPagamento = null;
+      });
+
+      print(
+          "$referencia \n $agente \n $empresa \n $comiss \n $infoEmbarque \n $dtEmbarque \n $dtPrevChegada \n $dtPrevPagamento");
+    } else {
+      String? text =
+          !validatorPagamento ? "Data de Pagamento não selecionada" : "";
+      String? text1 =
+          !validatorChegada ? "\nData de Chegada não selecionada" : "";
+      String? text2 =
+          !validatorEmbarque ? "\nData de Embarque não selecionada" : "";
+
+      if (!validatorPagamento || !validatorChegada || !validatorEmbarque) {
+        ScaffoldMessenger.of(context)
+            .showSnackBar(SnackBar(content: Text('$text$text1$text2')));
+      }
+    }
   }
 }

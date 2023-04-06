@@ -12,7 +12,7 @@ Future<void> main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  var db = FirebaseFirestore.instance;
+
   runApp(const MaterialApp(
     home: Home(),
   ));

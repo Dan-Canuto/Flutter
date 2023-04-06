@@ -2,28 +2,37 @@ import 'dart:ffi';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-class Processos {
+class Processo {
   final String referencia;
   final String agente;
   final String empresa;
 
   final Timestamp dataEmbarque;
   final Timestamp dataPrevChegada;
-  late Timestamp? dataChegada;
-  late Timestamp? dataPagamento;
+  Timestamp? dataChegada;
+  Timestamp? dataPagamento;
 
   bool statusChegada = false;
-  late List infoEmbarque;
+  final String infoEmbarque;
 
   //Financeiro
   final String valorPrevisto;
   final Timestamp dataPrevPagamento;
   bool statusPagamento = false;
 
-  Processos(this.referencia, this.agente, this.empresa, this.dataEmbarque,
-      this.dataPrevChegada, this.valorPrevisto, this.dataPrevPagamento);
+  Processo(
+      this.referencia,
+      this.agente,
+      this.empresa,
+      this.dataEmbarque,
+      this.dataPrevChegada,
+      this.valorPrevisto,
+      this.dataPrevPagamento,
+      this.dataChegada,
+      this.dataPagamento,
+      this.infoEmbarque);
 
-  Processos.fromJson(Map<String, dynamic> json)
+  Processo.fromJson(Map<String, dynamic> json)
       : referencia = json['referencia'],
         agente = json['agente'],
         empresa = json['empresa'],
@@ -44,8 +53,8 @@ class Processos {
       'empresa': empresa,
       'dataEmbarque': dataEmbarque,
       'dataPrevChegada': dataPrevChegada,
-      'dataChegada': dataChegada,
-      'dataPagamento': dataPagamento,
+      'dataChegada': '',
+      'dataPagamento': '',
       'statusChegada': statusChegada,
       'statusPagamento': statusPagamento,
       'infoEmbarque': infoEmbarque,
