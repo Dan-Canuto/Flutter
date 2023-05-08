@@ -89,7 +89,7 @@ class _TodoListPageState extends State<TodoListPage> {
                       },
                       style: ElevatedButton.styleFrom(
                           primary: const Color(0xff00d7f3),
-                          padding: const EdgeInsets.all(14)),
+                          padding: const EdgeInsets.all(16)),
                       child: const Icon(
                         Icons.add,
                         size: 30,
@@ -101,6 +101,7 @@ class _TodoListPageState extends State<TodoListPage> {
                   height: 16,
                 ),
                 Flexible(
+                  flex: 2,
                   child: ListView(
                     shrinkWrap: true,
                     children: [

@@ -16,9 +16,14 @@ class Processo {
   final String infoEmbarque;
 
   //Financeiro
-  final String valorPrevisto;
+  final String comissFrete;
+  final String comissDestino;
+  final String comissArmazenagem;
+  String? cotacaoDolar;
+
   final Timestamp dataPrevPagamento;
   bool statusPagamento = false;
+  bool statusConcluido = false;
 
   Processo(
       this.referencia,
@@ -26,8 +31,11 @@ class Processo {
       this.empresa,
       this.dataEmbarque,
       this.dataPrevChegada,
-      this.valorPrevisto,
+      this.comissFrete,
+      this.comissDestino,
+      this.comissArmazenagem,
       this.dataPrevPagamento,
+      this.cotacaoDolar,
       this.dataChegada,
       this.dataPagamento,
       this.infoEmbarque);
@@ -42,8 +50,12 @@ class Processo {
         dataPagamento = null,
         statusChegada = json['statusChegada'],
         statusPagamento = json['statusPagamento'],
+        statusConcluido = json['statusConcluido'],
         infoEmbarque = json['infoEmbarque'],
-        valorPrevisto = json['valorPrevisto'],
+        comissFrete = json['comissfrete'],
+        comissDestino = json['comissDestino'],
+        comissArmazenagem = json['comissArmazenagem'],
+        cotacaoDolar = json['cotacao Dolar'],
         dataPrevPagamento = json['dataPrevPagamento'];
 
   Map<String, dynamic> toJson() {
@@ -57,8 +69,12 @@ class Processo {
       'dataPagamento': '',
       'statusChegada': statusChegada,
       'statusPagamento': statusPagamento,
+      'statusConcluido': statusConcluido,
       'infoEmbarque': infoEmbarque,
-      'valorPrevisto': valorPrevisto,
+      'comissFrete': comissFrete,
+      'comissDestino': comissDestino,
+      'comissArmazenagem': comissArmazenagem,
+      'cotacao Dolar': '',
       'dataPrevPagamento': dataPrevPagamento,
     };
   }
