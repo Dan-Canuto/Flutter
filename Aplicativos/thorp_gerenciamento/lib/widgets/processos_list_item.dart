@@ -30,9 +30,9 @@ class ProcessosListItem extends StatelessWidget {
               borderRadius: BorderRadius.circular(10),
               flex: 2,
               onPressed: (_) {
-                Navigator.pushReplacement(
+                Navigator.pushReplacementNamed(
                   context,
-                  DetalhesPage(processo: processo),
+                  '/d',
                 );
               },
               foregroundColor: Colors.white,

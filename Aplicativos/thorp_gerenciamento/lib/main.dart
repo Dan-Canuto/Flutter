@@ -24,6 +24,7 @@ Future<void> main() async {
         '/a': (BuildContext context) => const ProcessosPage(),
         '/b': (BuildContext context) => const NewPage(),
         '/c': (BuildContext context) => const FinancasPage(),
+        '/d': (BuildContext context) => const DetalhesPage(),
       },
     ),
   );
