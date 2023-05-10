@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:thorp_gerenciamento/pages/detalhes_page.dart';
+import '../main.dart';
 import '../models/processos.dart';
 
 class ProcessosListItem extends StatelessWidget {
@@ -34,6 +35,7 @@ class ProcessosListItem extends StatelessWidget {
                   context,
                   '/d',
                 );
+                proc = processo;
               },
               foregroundColor: Colors.white,
               backgroundColor: const Color.fromRGBO(46, 49, 75, 1),

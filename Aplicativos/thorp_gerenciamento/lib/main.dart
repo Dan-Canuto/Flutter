@@ -10,6 +10,7 @@ import 'package:thorp_gerenciamento/pages/processos_page.dart';
 import 'firebase_options.dart';
 
 FirebaseFirestore db = FirebaseFirestore.instance;
+Processo? proc;
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
