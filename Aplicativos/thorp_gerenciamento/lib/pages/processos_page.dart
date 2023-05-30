@@ -118,7 +118,10 @@ class _ProcessosPageState extends State<ProcessosPage> {
                 shrinkWrap: true,
                 itemCount: procItems.length,
                 itemBuilder: (context, index) {
-                  return ProcessosListItem(processo: procItems[index]);
+                  return ProcessosListItem(
+                    processo: procItems[index],
+                    detalhe: detalhe,
+                  );
                 },
               ),
             ),
@@ -126,5 +129,15 @@ class _ProcessosPageState extends State<ProcessosPage> {
         ],
       ),
     );
+  }
+
+  void detalhe(Processo proce) {
+    setState(() {
+      Navigator.pushReplacementNamed(
+        context,
+        '/d',
+      );
+      proc = proce;
+    });
   }
 }

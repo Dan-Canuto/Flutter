@@ -11,6 +11,7 @@ import 'firebase_options.dart';
 
 FirebaseFirestore db = FirebaseFirestore.instance;
 Processo? proc;
+int indexNavBar = 0;
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -20,11 +21,9 @@ Future<void> main() async {
 
   runApp(
     MaterialApp(
-      home: Home(),
+      home: const Home(),
       routes: <String, WidgetBuilder>{
-        '/a': (BuildContext context) => const ProcessosPage(),
-        '/b': (BuildContext context) => const NewPage(),
-        '/c': (BuildContext context) => const FinancasPage(),
+        '/a': (BuildContext context) => const Home(),
         '/d': (BuildContext context) => const DetalhesPage(),
       },
     ),
@@ -38,7 +37,6 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  int _indexNavBar = 0;
   @override
   Widget build(BuildContext context) {
     final iconList = <IconData>[
@@ -50,11 +48,11 @@ class _HomeState extends State<Home> {
         backgroundColor: Color.fromARGB(255, 255, 255, 255),
         bottomNavigationBar: BottomNavigationBar(
           type: BottomNavigationBarType.fixed,
-          currentIndex: _indexNavBar,
+          currentIndex: indexNavBar,
           onTap: (value) => {
             setState(
               () {
-                _indexNavBar = value;
+                indexNavBar = value;
               },
             )
           },
@@ -86,11 +84,12 @@ class _HomeState extends State<Home> {
           centerTitle: true,
         ),
         body: IndexedStack(
-          index: _indexNavBar,
+          index: indexNavBar,
           children: const <Widget>[
             ProcessosPage(),
             FinancasPage(),
             NewPage(),
+            DetalhesPage(),
           ],
         ),
       ),

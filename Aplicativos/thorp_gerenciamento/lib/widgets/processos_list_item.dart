@@ -11,9 +11,11 @@ class ProcessosListItem extends StatelessWidget {
   const ProcessosListItem({
     Key? key,
     required this.processo,
+    required this.detalhe,
   }) : super(key: key);
 
   final Processo processo;
+  final Function(Processo) detalhe;
 
   @override
   Widget build(BuildContext context) {
@@ -31,11 +33,7 @@ class ProcessosListItem extends StatelessWidget {
               borderRadius: BorderRadius.circular(10),
               flex: 2,
               onPressed: (_) {
-                Navigator.pushReplacementNamed(
-                  context,
-                  '/d',
-                );
-                proc = processo;
+                detalhe(processo);
               },
               foregroundColor: Colors.white,
               backgroundColor: const Color.fromRGBO(46, 49, 75, 1),
