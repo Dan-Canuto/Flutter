@@ -55,13 +55,17 @@ class _ProcessosPageState extends State<ProcessosPage> {
               proc['dataChegada'],
               proc['cotacaoDolar'],
               proc['dataPagamento'],
-              proc['infoEmbarque']),
+              proc['infoEmbarque'],
+              proc['portoOrigem'],
+              proc['portoChegada']),
         )
         .toList();
-    setState(() {
-      // TODO: implement setState
-      procItems = list;
-    });
+    if (this.mounted) {
+      setState(() {
+        // TODO: implement setState
+        procItems = list;
+      });
+    }
   }
 
   @override

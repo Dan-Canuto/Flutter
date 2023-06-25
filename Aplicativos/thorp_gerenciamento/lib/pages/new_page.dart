@@ -39,7 +39,6 @@ class _NewPageState extends State<NewPage> {
   final TextEditingController DtPrevPagamentoController =
       TextEditingController();
   final TextEditingController InfoEmbarqueController = TextEditingController();
-  final TextEditingController CotacaoDolarController = TextEditingController();
   final TextEditingController PortoOrigemController = TextEditingController();
   final TextEditingController PortoChegadaController = TextEditingController();
 
@@ -49,6 +48,8 @@ class _NewPageState extends State<NewPage> {
     EmpController.clear();
     ComissFreteController.clear();
     InfoEmbarqueController.clear();
+    PortoOrigemController.clear();
+    PortoChegadaController.clear();
     setState(() {
       _dtEmbarque = null;
       _dtPrevChegada = null;
@@ -700,6 +701,8 @@ class _NewPageState extends State<NewPage> {
       'statusPagamento': proc.statusPagamento,
       'statusConcluido': proc.statusConcluido,
       'infoEmbarque': proc.infoEmbarque,
+      'portoOrigem': proc.portoOrigem,
+      'portoChegada': proc.portoChegada,
       'comissFrete': proc.comissFrete,
       'comissDestino': proc.comissDestino,
       'comissArmazenagem': proc.comissArmazenagem,
@@ -731,6 +734,8 @@ class _NewPageState extends State<NewPage> {
       String dtEmbarque = _dtEmbarque!;
       String dtPrevChegada = _dtPrevChegada!;
       String dtPrevPagamento = _dtPrevPagamento!;
+      String PortoOrigem = PortoOrigemController.text;
+      String PortoChegada = PortoChegadaController.text;
 
       Processo newProc = Processo(
         referencia,
@@ -746,6 +751,8 @@ class _NewPageState extends State<NewPage> {
         null,
         null,
         infoEmbarque,
+        PortoOrigem,
+        PortoChegada,
       );
 
       saveProc(newProc);
@@ -758,6 +765,8 @@ class _NewPageState extends State<NewPage> {
         ComissDestinoController.clear();
         ComissArmazenagemController.clear();
         InfoEmbarqueController.clear();
+        PortoChegadaController.clear();
+        PortoOrigemController.clear();
         _dtEmbarque = null;
         _dtPrevChegada = null;
         _dtPrevPagamento = null;

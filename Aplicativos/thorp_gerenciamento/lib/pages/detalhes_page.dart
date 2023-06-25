@@ -40,12 +40,11 @@ class _DetalhesPageState extends State<DetalhesPage> {
           centerTitle: true,
         ),
         body: Container(
-          padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
+          padding: const EdgeInsets.fromLTRB(20, 0, 20, 80),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Flexible(
-                flex: 2,
                 child: Container(
                   decoration: const BoxDecoration(
                     borderRadius: BorderRadius.only(
@@ -55,7 +54,7 @@ class _DetalhesPageState extends State<DetalhesPage> {
                     boxShadow: [
                       BoxShadow(
                         color: Color.fromARGB(255, 141, 131, 131),
-                        blurRadius: 4,
+                        blurRadius: 12,
                         offset: Offset(0, 4),
                       ),
                     ],
@@ -74,58 +73,229 @@ class _DetalhesPageState extends State<DetalhesPage> {
                   ),
                 ),
               ),
-              Flexible(
-                flex: 8,
-                child: ListView(
-                  children: [
-                    Container(
-                      child: Column(
-                        children: [
-                          Text("Informações do Processo"),
-                          Text(proc?.agente != null
-                              ? proc!.agente
-                              : "Não inserido"),
-                          Text(proc?.empresa != null
-                              ? proc!.empresa
-                              : "Não inserido"),
-                          Text(proc?.referencia != null
-                              ? proc!.referencia
-                              : "Não inserido"),
-                        ],
-                      ),
+              const SizedBox(
+                height: 40,
+              ),
+              Expanded(
+                flex: 14,
+                child: Container(
+                  decoration: BoxDecoration(
+                    boxShadow: const [
+                      BoxShadow(
+                          color: Color.fromRGBO(36, 37, 51, 0.678),
+                          blurRadius: 8,
+                          offset: Offset(
+                            0,
+                            8,
+                          )),
+                    ],
+                    border: Border.all(
+                        color: Color.fromRGBO(46, 49, 75, 1), width: 8),
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(20),
                     ),
-                    Container(
-                      child: Column(
-                        children: [
-                          Text("Datas"),
-                          Text(proc?.dataEmbarque != null
-                              ? "Data de Chegada: ${DateFormat('dd/MM/yyyy').format(proc!.dataEmbarque.toDate())}"
-                              : 'Data de Chegada: Não Cadastrada'),
-                          Text(proc?.dataChegada != null
-                              ? "Data de Chegada: ${DateFormat('dd/MM/yyyy').format(proc!.dataChegada!.toDate())}"
-                              : 'Data de Chegada: Não Cadastrada'),
-                          Text(proc?.dataPrevChegada != null
-                              ? "Data de Chegada: ${DateFormat('dd/MM/yyyy').format(proc!.dataPrevChegada.toDate())}"
-                              : 'Data de Chegada: Não Cadastrada'),
-                          Row(
-                            children: [
-                              Text("Status da Chegada: "),
-                              Checkbox(
-                                  value: proc?.statusChegada != null
-                                      ? proc!.statusChegada
-                                      : false,
-                                  onChanged: null),
-                            ],
-                          ),
-                          Checkbox(
-                              value: proc?.statusConcluido != null
-                                  ? proc!.statusChegada
-                                  : false,
-                              onChanged: null),
-                        ],
+                    color: Color.fromARGB(255, 255, 255, 255),
+                  ),
+                  child: Column(
+                    children: [
+                      Container(
+                        alignment: Alignment.center,
+                        padding: EdgeInsets.all(20),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Container(
+                              margin: EdgeInsets.only(bottom: 10),
+                              child: Row(
+                                children: [
+                                  Text(
+                                    'Agente: ',
+                                    style: TextStyle(
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.w500),
+                                  ),
+                                  Text(
+                                    proc?.agente != null
+                                        ? proc!.agente
+                                        : "Não inserido",
+                                    style: TextStyle(fontSize: 20),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Container(
+                              margin: EdgeInsets.only(bottom: 10),
+                              child: Row(
+                                children: [
+                                  Text(
+                                    'Empresa: ',
+                                    style: TextStyle(
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.w500),
+                                  ),
+                                  Text(
+                                    proc?.empresa != null
+                                        ? proc!.empresa
+                                        : "Não inserido",
+                                    style: TextStyle(fontSize: 20),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Container(
+                              margin: EdgeInsets.only(bottom: 10),
+                              child: Row(
+                                children: [
+                                  Text(
+                                    'Nº de ref: ',
+                                    style: TextStyle(
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.w500),
+                                  ),
+                                  Text(
+                                    proc?.referencia != null
+                                        ? proc!.referencia
+                                        : "Não inserido",
+                                    style: TextStyle(fontSize: 20),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Container(
+                              margin: EdgeInsets.only(bottom: 10),
+                              child: Row(
+                                children: [
+                                  Text(
+                                    'Data de embarque: ',
+                                    style: TextStyle(
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.w500),
+                                  ),
+                                  Text(
+                                    proc?.dataEmbarque != null
+                                        ? DateFormat('dd/MM/yyyy')
+                                            .format(proc!.dataEmbarque.toDate())
+                                        : 'Não Cadastrada',
+                                    style: TextStyle(fontSize: 20),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Container(
+                              margin: EdgeInsets.only(bottom: 10),
+                              child: Row(
+                                children: [
+                                  Text(
+                                    'Previsao de chegada: ',
+                                    style: TextStyle(
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.w500),
+                                  ),
+                                  Text(
+                                    proc?.dataPrevChegada != null
+                                        ? DateFormat('dd/MM/yyyy').format(
+                                            proc!.dataPrevChegada!.toDate())
+                                        : 'Não Cadastrada',
+                                    style: TextStyle(fontSize: 20),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Container(
+                              margin: EdgeInsets.only(bottom: 10),
+                              child: Row(
+                                children: [
+                                  Text(
+                                    'Data de chegada: ',
+                                    style: TextStyle(
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.w500),
+                                  ),
+                                  Text(
+                                    proc?.dataChegada != null
+                                        ? DateFormat('dd/MM/yyyy')
+                                            .format(proc!.dataChegada!.toDate())
+                                        : 'Não Cadastrada',
+                                    style: TextStyle(fontSize: 20),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Container(
+                              margin: EdgeInsets.only(bottom: 10),
+                              child: Row(
+                                children: [
+                                  Text(
+                                    'Info do embarque: ',
+                                    style: TextStyle(
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.w500),
+                                  ),
+                                  Text(
+                                    proc?.infoEmbarque != null
+                                        ? proc!
+                                            .infoEmbarque //Alteração de quebra de linha
+                                        : "Não inserido",
+                                    style: TextStyle(
+                                      fontSize: 20,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Container(
+                              margin: EdgeInsets.only(bottom: 10),
+                              child: Row(
+                                children: [
+                                  Text(
+                                    'Porto de origem: ',
+                                    style: TextStyle(
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.w500),
+                                  ),
+                                  Text(
+                                    proc?.portoOrigem != null
+                                        ? proc!.portoOrigem
+                                        : "Não informado",
+                                    style: TextStyle(
+                                      fontSize: 20,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Container(
+                              margin: EdgeInsets.only(bottom: 10),
+                              child: Row(
+                                children: [
+                                  Text(
+                                    'Porto de chegada: ',
+                                    style: TextStyle(
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.w500),
+                                  ),
+                                  Text(
+                                    proc?.portoChegada != null
+                                        ? proc!.portoChegada
+                                        : "Não informado",
+                                    style: TextStyle(
+                                      fontSize: 20,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
-                  ],
+                      Container(
+                        color: Colors.black,
+                        alignment: Alignment.bottomRight,
+                        child: Text("Concluido"),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ],

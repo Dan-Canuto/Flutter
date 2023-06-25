@@ -14,6 +14,8 @@ class Processo {
 
   bool statusChegada = false;
   final String infoEmbarque;
+  final String portoOrigem;
+  final String portoChegada;
 
   //Financeiro
   final String comissFrete;
@@ -26,19 +28,22 @@ class Processo {
   bool statusConcluido = false;
 
   Processo(
-      this.referencia,
-      this.agente,
-      this.empresa,
-      this.dataEmbarque,
-      this.dataPrevChegada,
-      this.comissFrete,
-      this.comissDestino,
-      this.comissArmazenagem,
-      this.dataPrevPagamento,
-      this.cotacaoDolar,
-      this.dataChegada,
-      this.dataPagamento,
-      this.infoEmbarque);
+    this.referencia,
+    this.agente,
+    this.empresa,
+    this.dataEmbarque,
+    this.dataPrevChegada,
+    this.comissFrete,
+    this.comissDestino,
+    this.comissArmazenagem,
+    this.dataPrevPagamento,
+    this.cotacaoDolar,
+    this.dataChegada,
+    this.dataPagamento,
+    this.infoEmbarque,
+    this.portoOrigem,
+    this.portoChegada,
+  );
 
   Processo.fromJson(Map<String, dynamic> json)
       : referencia = json['referencia'],
@@ -52,6 +57,8 @@ class Processo {
         statusPagamento = json['statusPagamento'],
         statusConcluido = json['statusConcluido'],
         infoEmbarque = json['infoEmbarque'],
+        portoOrigem = json['portoOrigem'],
+        portoChegada = json['portoChegada'],
         comissFrete = json['comissfrete'],
         comissDestino = json['comissDestino'],
         comissArmazenagem = json['comissArmazenagem'],
@@ -71,6 +78,8 @@ class Processo {
       'statusPagamento': statusPagamento,
       'statusConcluido': statusConcluido,
       'infoEmbarque': infoEmbarque,
+      'portoOrigem': portoOrigem,
+      'portoChegada': portoChegada,
       'comissFrete': comissFrete,
       'comissDestino': comissDestino,
       'comissArmazenagem': comissArmazenagem,
