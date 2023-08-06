@@ -3,6 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:thorp_gerenciamento/models/processos.dart';
 import 'package:thorp_gerenciamento/pages/detalhes_page.dart';
+import 'package:thorp_gerenciamento/pages/edicao_page.dart';
 import 'package:thorp_gerenciamento/pages/financas_page.dart';
 import 'package:thorp_gerenciamento/pages/new_page.dart';
 import 'package:thorp_gerenciamento/pages/processos_page.dart';
@@ -25,6 +26,7 @@ Future<void> main() async {
       routes: <String, WidgetBuilder>{
         '/a': (BuildContext context) => const Home(),
         '/d': (BuildContext context) => const DetalhesPage(),
+        '/e': (BuildContext context) => EdicaoDadosPage(),
       },
     ),
   );

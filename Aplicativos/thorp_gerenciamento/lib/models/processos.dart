@@ -3,47 +3,49 @@ import 'dart:ffi';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Processo {
-  final String referencia;
-  final String agente;
-  final String empresa;
+  String referencia;
+  String agente;
+  String empresa;
 
-  final Timestamp dataEmbarque;
-  final Timestamp dataPrevChegada;
+  Timestamp dataEmbarque;
+  Timestamp dataPrevChegada;
   Timestamp? dataChegada;
   Timestamp? dataPagamento;
 
-  bool statusChegada = false;
-  final String infoEmbarque;
-  final String portoOrigem;
-  final String portoChegada;
+  String infoEmbarque;
+  String portoOrigem;
+  String portoChegada;
 
   //Financeiro
-  final String comissFrete;
-  final String comissDestino;
-  final String comissArmazenagem;
-  String? cotacaoDolar;
+  String comissFreteCompra;
+  String comissFreteVenda;
+  String comissDestino;
+  String comissArmazenagem;
+  String cotacaoDolar;
+  String status;
 
-  final Timestamp dataPrevPagamento;
-  bool statusPagamento = false;
-  bool statusConcluido = false;
+  Timestamp dataPrevPagamento;
+  bool statusPagamento;
 
   Processo(
-    this.referencia,
-    this.agente,
-    this.empresa,
-    this.dataEmbarque,
-    this.dataPrevChegada,
-    this.comissFrete,
-    this.comissDestino,
-    this.comissArmazenagem,
-    this.dataPrevPagamento,
-    this.cotacaoDolar,
-    this.dataChegada,
-    this.dataPagamento,
-    this.infoEmbarque,
-    this.portoOrigem,
-    this.portoChegada,
-  );
+      this.referencia,
+      this.agente,
+      this.empresa,
+      this.dataEmbarque,
+      this.dataPrevChegada,
+      this.comissFreteCompra,
+      this.comissFreteVenda,
+      this.comissDestino,
+      this.comissArmazenagem,
+      this.dataPrevPagamento,
+      this.dataChegada,
+      this.dataPagamento,
+      this.infoEmbarque,
+      this.portoOrigem,
+      this.portoChegada,
+      {this.status = "1",
+      this.cotacaoDolar = "1",
+      this.statusPagamento = false});
 
   Processo.fromJson(Map<String, dynamic> json)
       : referencia = json['referencia'],
@@ -53,13 +55,13 @@ class Processo {
         dataPrevChegada = json['dataPrevChegada'],
         dataChegada = null,
         dataPagamento = null,
-        statusChegada = json['statusChegada'],
         statusPagamento = json['statusPagamento'],
-        statusConcluido = json['statusConcluido'],
+        status = json['status'],
         infoEmbarque = json['infoEmbarque'],
         portoOrigem = json['portoOrigem'],
         portoChegada = json['portoChegada'],
-        comissFrete = json['comissfrete'],
+        comissFreteCompra = json['comissfreteCompra'],
+        comissFreteVenda = json['comissfreteVenda'],
         comissDestino = json['comissDestino'],
         comissArmazenagem = json['comissArmazenagem'],
         cotacaoDolar = json['cotacao Dolar'],
@@ -74,13 +76,13 @@ class Processo {
       'dataPrevChegada': dataPrevChegada,
       'dataChegada': '',
       'dataPagamento': '',
-      'statusChegada': statusChegada,
       'statusPagamento': statusPagamento,
-      'statusConcluido': statusConcluido,
+      'status': status,
       'infoEmbarque': infoEmbarque,
       'portoOrigem': portoOrigem,
       'portoChegada': portoChegada,
-      'comissFrete': comissFrete,
+      'comissFreteCompra': comissFreteCompra,
+      'comissFreteVenda': comissFreteVenda,
       'comissDestino': comissDestino,
       'comissArmazenagem': comissArmazenagem,
       'cotacao Dolar': '',

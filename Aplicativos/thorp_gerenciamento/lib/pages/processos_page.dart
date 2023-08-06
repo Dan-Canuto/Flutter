@@ -43,26 +43,29 @@ class _ProcessosPageState extends State<ProcessosPage> {
     var list = records.docs
         .map(
           (proc) => Processo(
-              proc['referencia'],
-              proc['agente'],
-              proc['empresa'],
-              proc['dataEmbarque'],
-              proc['dataPrevChegada'],
-              proc['comissFrete'],
-              proc['comissDestino'],
-              proc['comissArmazenagem'],
-              proc['dataPrevPagamento'],
-              proc['dataChegada'],
-              proc['cotacaoDolar'],
-              proc['dataPagamento'],
-              proc['infoEmbarque'],
-              proc['portoOrigem'],
-              proc['portoChegada']),
+            proc['referencia'],
+            proc['agente'],
+            proc['empresa'],
+            proc['dataEmbarque'],
+            proc['dataPrevChegada'],
+            proc['comissFreteCompra'],
+            proc['comissFreteVenda'],
+            proc['comissDestino'],
+            proc['comissArmazenagem'],
+            proc['dataPrevPagamento'],
+            proc['dataChegada'],
+            proc['dataPagamento'],
+            proc['infoEmbarque'],
+            proc['portoOrigem'],
+            proc['portoChegada'],
+            cotacaoDolar: proc['cotacaoDolar'],
+            status: proc['status'],
+            statusPagamento: proc['statusPagamento'],
+          ),
         )
         .toList();
     if (this.mounted) {
       setState(() {
-        // TODO: implement setState
         procItems = list;
       });
     }

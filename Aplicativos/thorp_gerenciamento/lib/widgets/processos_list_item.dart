@@ -26,7 +26,7 @@ class ProcessosListItem extends StatelessWidget {
       child: Slidable(
         key: const ValueKey(0),
         endActionPane: ActionPane(
-          extentRatio: 0.25,
+          extentRatio: 0.5,
           motion: const StretchMotion(),
           children: [
             SlidableAction(
@@ -39,6 +39,17 @@ class ProcessosListItem extends StatelessWidget {
               backgroundColor: const Color.fromRGBO(46, 49, 75, 1),
               icon: Icons.visibility,
               label: 'Detalhes',
+            ),
+            SlidableAction(
+              borderRadius: BorderRadius.circular(10),
+              flex: 2,
+              onPressed: (_) {
+                detalhe(processo);
+              },
+              foregroundColor: Colors.white,
+              backgroundColor: const Color.fromRGBO(46, 49, 75, 1),
+              icon: Icons.monetization_on,
+              label: 'Financeiro',
             ),
           ],
         ),

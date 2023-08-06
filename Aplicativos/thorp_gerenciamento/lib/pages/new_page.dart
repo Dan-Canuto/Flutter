@@ -32,7 +32,10 @@ class _NewPageState extends State<NewPage> {
   final TextEditingController RefController = TextEditingController();
   final TextEditingController AgtController = TextEditingController();
   final TextEditingController EmpController = TextEditingController();
-  final TextEditingController ComissFreteController = TextEditingController();
+  final TextEditingController ComissFreteCompraController =
+      TextEditingController();
+  final TextEditingController ComissFreteVendaController =
+      TextEditingController();
   final TextEditingController ComissDestinoController = TextEditingController();
   final TextEditingController ComissArmazenagemController =
       TextEditingController();
@@ -46,7 +49,8 @@ class _NewPageState extends State<NewPage> {
     RefController.clear();
     AgtController.clear();
     EmpController.clear();
-    ComissFreteController.clear();
+    ComissFreteCompraController.clear();
+    ComissFreteVendaController.clear();
     InfoEmbarqueController.clear();
     PortoOrigemController.clear();
     PortoChegadaController.clear();
@@ -247,9 +251,39 @@ class _NewPageState extends State<NewPage> {
                           }
                         },
                         keyboardType: TextInputType.number,
-                        controller: ComissFreteController,
+                        controller: ComissFreteCompraController,
                         decoration: const InputDecoration(
-                          labelText: "Frete",
+                          labelText: "Frete - Compra",
+                          prefixText: "USD ",
+                          labelStyle: TextStyle(
+                            color: Color.fromRGBO(46, 49, 75, 1),
+                          ),
+                          border: OutlineInputBorder(),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: Color.fromRGBO(46, 49, 75, 1),
+                              width: 3,
+                            ),
+                          ),
+                        ),
+                        style: const TextStyle(
+                          color: Colors.black,
+                          fontSize: 15,
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(0, 20, 0, 0),
+                      child: TextFormField(
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return 'Informe o valor';
+                          }
+                        },
+                        keyboardType: TextInputType.number,
+                        controller: ComissFreteVendaController,
+                        decoration: const InputDecoration(
+                          labelText: "Frete - Venda",
                           prefixText: "USD ",
                           labelStyle: TextStyle(
                             color: Color.fromRGBO(46, 49, 75, 1),
@@ -697,13 +731,13 @@ class _NewPageState extends State<NewPage> {
       'dataPrevChegada': proc.dataPrevChegada,
       'dataChegada': proc.dataChegada,
       'dataPagamento': proc.dataPagamento,
-      'statusChegada': proc.statusChegada,
       'statusPagamento': proc.statusPagamento,
-      'statusConcluido': proc.statusConcluido,
+      'status': proc.status,
       'infoEmbarque': proc.infoEmbarque,
       'portoOrigem': proc.portoOrigem,
       'portoChegada': proc.portoChegada,
-      'comissFrete': proc.comissFrete,
+      'comissFreteCompra': proc.comissFreteCompra,
+      'comissFreteVenda': proc.comissFreteVenda,
       'comissDestino': proc.comissDestino,
       'comissArmazenagem': proc.comissArmazenagem,
       'cotacaoDolar': proc.cotacaoDolar,
@@ -727,7 +761,8 @@ class _NewPageState extends State<NewPage> {
       String referencia = RefController.text;
       String agente = AgtController.text;
       String empresa = EmpController.text;
-      String ComissFrete = ComissFreteController.text;
+      String ComissFreteCompra = ComissFreteCompraController.text;
+      String ComissFreteVenda = ComissFreteVendaController.text;
       String ComissDestino = ComissDestinoController.text;
       String ComissArmazenagem = ComissArmazenagemController.text;
       String infoEmbarque = InfoEmbarqueController.text;
@@ -743,11 +778,11 @@ class _NewPageState extends State<NewPage> {
         empresa,
         _dtimeEmbarque!,
         _dtimePrevChegada!,
-        ComissFrete,
+        ComissFreteCompra,
+        ComissFreteVenda,
         ComissDestino,
         ComissArmazenagem,
         _dtimePrevPagamento!,
-        null,
         null,
         null,
         infoEmbarque,
@@ -761,7 +796,8 @@ class _NewPageState extends State<NewPage> {
         RefController.clear();
         AgtController.clear();
         EmpController.clear();
-        ComissFreteController.clear();
+        ComissFreteCompraController.clear();
+        ComissFreteVendaController.clear();
         ComissDestinoController.clear();
         ComissArmazenagemController.clear();
         InfoEmbarqueController.clear();
