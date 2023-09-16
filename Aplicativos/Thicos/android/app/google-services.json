@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "644225959180",
+    "firebase_url": "https://thicos-60bce-default-rtdb.firebaseio.com",
+    "project_id": "thicos-60bce",
+    "storage_bucket": "thicos-60bce.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:644225959180:android:6e063fff9cc3c342f2b529",
+        "android_client_info": {
+          "package_name": "com.br.thicos"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "644225959180-22jaonl6mk1sj80g0u46un4h3fcli2dv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBpULta-dVb9oix8vTLE15KXDuw0shHCgE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "644225959180-22jaonl6mk1sj80g0u46un4h3fcli2dv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
