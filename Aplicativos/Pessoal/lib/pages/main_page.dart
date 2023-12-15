@@ -17,15 +17,17 @@ class _MainPageState extends State<MainPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text('MY\nCOMPANION',
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontSize: 30,
-              fontWeight: FontWeight.w700,
-              color: Color.fromRGBO(17, 217, 124, 0.7),
-            ),),
+            Container(
+              height: mediaQuery.size.height * 0.2,
+              width: mediaQuery.size.width * 0.8,
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage('assets/images/logo.png'),
+                ),
+              ),
+            ),
             SizedBox(
-              height: mediaQuery.size.height * 0.15,
+              height: mediaQuery.size.height * 0.1,
             ),
             Container(
               padding: EdgeInsets.all(12),
@@ -59,9 +61,7 @@ class _MainPageState extends State<MainPage> {
                   ),
                   ElevatedButton(
                     onPressed: (){},
-                    style: ButtonStyle(
-                      backgroundColor: Color.fromRGBO(4, 38, 22, 1),
-                    ),
+                    
                     child: Text("Enviar"))
                 ],
               ),
