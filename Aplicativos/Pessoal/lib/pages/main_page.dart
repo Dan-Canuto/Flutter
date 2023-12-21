@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:organizer/colors.dart';
+import 'package:organizer/widgets/password.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({super.key});
@@ -30,39 +32,22 @@ class _MainPageState extends State<MainPage> {
               height: mediaQuery.size.height * 0.1,
             ),
             Container(
-              padding: EdgeInsets.all(12),
+              padding: EdgeInsets.all(10),
               width: mediaQuery.size.width * 0.8,
-              height: mediaQuery.size.height * 0.3,
+              height: mediaQuery.size.height * 0.4,
               decoration: BoxDecoration(
-                color: Color.fromRGBO(17, 217, 124, 0.7),
+                color: AppColors.c1,
                 border: Border.all(
                   style: BorderStyle.solid,
-                  width: 5,
-                  color: Color.fromRGBO(13, 166, 95, 0.8),
+                  width: 1,
+                  color: AppColors.white,
                 ),
                 borderRadius: BorderRadius.circular(20)
               ),
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
-                    "SENHA",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: Color.fromRGBO(4, 38, 22, 1),
-                      fontSize: 20,
-                      fontWeight: FontWeight.w500
-                    ),
-                  ),
-                  Container(
-                    margin: EdgeInsets.only(top: 16),
-                    color: Colors.white,
-                    height: 30,
-                    width: 400,
-                  ),
-                  ElevatedButton(
-                    onPressed: (){},
-                    
-                    child: Text("Enviar"))
+                  Password(),
                 ],
               ),
             ),
