@@ -9,10 +9,10 @@ class Password extends StatefulWidget {
 }
 
 class _PasswordState extends State<Password> {
-   String? senha;
+   String? password;
     GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
-    final TextEditingController senhaController = TextEditingController();
+    final TextEditingController passwordController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -31,7 +31,7 @@ class _PasswordState extends State<Password> {
                     ),
                     child: Center(
                       child: Text(
-                        senhaController.text,
+                        passwordController.text,
                         style: TextStyle(
                           color: AppColors.black,
                           fontWeight: FontWeight.w600,
@@ -51,15 +51,15 @@ class _PasswordState extends State<Password> {
                         children: [
                           ElevatedButton(
                             style: ElevatedButton.styleFrom(
-                                backgroundColor:
-                                    AppColors.c3,
+                                backgroundColor:AppColors.c3,
+                                elevation: 10,
                                 textStyle: const TextStyle(
                                   fontSize: 20,
                                 ),
                                 fixedSize: Size(20, 15)),
                             onPressed: () {
                               setState(() {
-                                senhaController.text += "1";
+                                passwordController.text += "1";
                               });
                             },
                             child: const Text(
@@ -71,15 +71,15 @@ class _PasswordState extends State<Password> {
                           ),
                           ElevatedButton(
                             style: ElevatedButton.styleFrom(
-                                backgroundColor:
-                                    AppColors.c3,
+                                backgroundColor:AppColors.c3,
+                                elevation: 10,
                                 textStyle: const TextStyle(
                                   fontSize: 20,
                                 ),
                                 fixedSize: Size(20, 15)),
                             onPressed: () {
                               setState(() {
-                                senhaController.text += "2";
+                                passwordController.text += "2";
                               });
                             },
                             child: const Text(
@@ -91,15 +91,15 @@ class _PasswordState extends State<Password> {
                           ),
                           ElevatedButton(
                             style: ElevatedButton.styleFrom(
-                                backgroundColor:
-                                    AppColors.c3,
+                                backgroundColor:AppColors.c3,
+                                elevation: 10,
                                 textStyle: const TextStyle(
                                   fontSize: 20,
                                 ),
                                 fixedSize: Size(20, 15)),
                             onPressed: () {
                               setState(() {
-                                senhaController.text += "3";
+                                passwordController.text += "3";
                               });
                             },
                             child: const Text(
@@ -118,15 +118,15 @@ class _PasswordState extends State<Password> {
                         children: [
                           ElevatedButton(
                             style: ElevatedButton.styleFrom(
-                                backgroundColor:
-                                    AppColors.c3,
+                                backgroundColor:AppColors.c3,
+                                elevation: 10,
                                 textStyle: const TextStyle(
                                   fontSize: 20,
                                 ),
                                 fixedSize: Size(20, 15)),
                             onPressed: () {
                               setState(() {
-                                senhaController.text += "4";
+                                passwordController.text += "4";
                               });
                             },
                             child: const Text(
@@ -138,15 +138,15 @@ class _PasswordState extends State<Password> {
                           ),
                           ElevatedButton(
                             style: ElevatedButton.styleFrom(
-                                backgroundColor:
-                                    AppColors.c3,
+                                backgroundColor:AppColors.c3,
+                                elevation: 10,
                                 textStyle: const TextStyle(
                                   fontSize: 20,
                                 ),
                                 fixedSize: Size(20, 15)),
                             onPressed: () {
                               setState(() {
-                                senhaController.text += "5";
+                                passwordController.text += "5";
                               });
                             },
                             child: const Text(
@@ -158,15 +158,15 @@ class _PasswordState extends State<Password> {
                           ),
                           ElevatedButton(
                             style: ElevatedButton.styleFrom(
-                                backgroundColor:
-                                    AppColors.c3,
+                                backgroundColor:AppColors.c3,
+                                elevation: 10,
                                 textStyle: const TextStyle(
                                   fontSize: 20,
                                 ),
                                 fixedSize: Size(20, 15)),
                             onPressed: () {
                               setState(() {
-                                senhaController.text += "6";
+                                passwordController.text += "6";
                               });
                             },
                             child: const Text(
@@ -185,15 +185,15 @@ class _PasswordState extends State<Password> {
                           
                           ElevatedButton(
                             style: ElevatedButton.styleFrom(
-                                backgroundColor:
-                                    AppColors.c3,
+                                backgroundColor:AppColors.c3,
+                                elevation: 10,
                                 textStyle: const TextStyle(
                                   fontSize: 20,
                                 ),
                                 fixedSize: Size(20, 15)),
                             onPressed: () {
                               setState(() {
-                                senhaController.text += "7";
+                                passwordController.text += "7";
                               });
                             },
                             child: const Text(
@@ -205,15 +205,15 @@ class _PasswordState extends State<Password> {
                           ),
                           ElevatedButton(
                             style: ElevatedButton.styleFrom(
-                                backgroundColor:
-                                    AppColors.c3,
+                                backgroundColor:AppColors.c3,
+                                elevation: 10,
                                 textStyle: const TextStyle(
                                   fontSize: 20,
                                 ),
                                 fixedSize: Size(20, 15)),
                             onPressed: () {
                               setState(() {
-                                senhaController.text += "8";
+                                passwordController.text += "8";
                               });
                             },
                             child: const Text(
@@ -225,15 +225,15 @@ class _PasswordState extends State<Password> {
                           ),
                           ElevatedButton(
                             style: ElevatedButton.styleFrom(
-                                backgroundColor:
-                                    AppColors.c3,
+                                backgroundColor:AppColors.c3,
+                                elevation: 10,
                                 textStyle: const TextStyle(
                                   fontSize: 20,
                                 ),
                                 fixedSize: Size(20, 15)),
                             onPressed: () {
                               setState(() {
-                                senhaController.text += "9";
+                                passwordController.text += "9";
                               });
                             },
                             child: const Text(
@@ -252,11 +252,11 @@ class _PasswordState extends State<Password> {
                         ElevatedButton(
                           style: ElevatedButton.styleFrom(
                               backgroundColor:AppColors.white,
-                            
-                              fixedSize: Size(20, 1)),
+                              elevation: 10,
+                              fixedSize: Size(20, 15)),
                           onPressed: () {
                             setState(() {
-                              senhaController.clear();
+                              passwordController.clear();
                             });
                           },
                           child: Icon(
@@ -267,16 +267,15 @@ class _PasswordState extends State<Password> {
                         ),                    
                         ElevatedButton(
                             style: ElevatedButton.styleFrom(
-                                backgroundColor:
-                                    AppColors.c3,
+                                backgroundColor:AppColors.c3,
+                                elevation: 10,
                                 textStyle: const TextStyle(
                                   fontSize: 20,
                                 ),
                                 fixedSize: Size(20, 15)),
                             onPressed: () {
                               setState(() {
-                                print('0');
-                                senhaController.text += "0";
+                                passwordController.text += "0";
                               });
                             },
                             child: const Text(
@@ -289,11 +288,38 @@ class _PasswordState extends State<Password> {
                           
                           ElevatedButton(
                             style: ElevatedButton.styleFrom(
-                                backgroundColor: AppColors.white, 
+                                backgroundColor: AppColors.white,
+                                elevation: 10,
                                 fixedSize: Size(20, 15),
                             ),
                             onPressed: () {
-                              
+                              if(passwordController.text == "1804"){
+                                Navigator.pushReplacementNamed(
+                                  context,
+                                  '/home',
+                                );
+                              }else{
+                                setState(() {
+                                  passwordController.clear();
+                                });
+                                showDialog<void>(
+                                  context: context,
+                                  barrierColor: Color.fromRGBO(15, 15, 15, 0.8),
+                                  useSafeArea: false,
+                                  barrierDismissible: true, // user must tap button!
+                                  builder: (BuildContext context) {
+                                    return AlertDialog(
+                                      elevation: 10,
+                                      title: Center(
+                                        child: const Text(
+                                          'Senha Incorreta bem',
+                                          style: TextStyle(fontSize: 15),
+                                        ),
+                                      ),
+                                    );
+                                  },
+                                );
+                              }
                             },
                             child: Icon(
                               Icons.subdirectory_arrow_right,

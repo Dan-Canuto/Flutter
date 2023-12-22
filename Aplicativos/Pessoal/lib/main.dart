@@ -1,8 +1,27 @@
 import 'package:flutter/material.dart';
-import 'package:organizer/pages/main_page.dart';
+import 'package:organizer/colors.dart';
+import 'package:organizer/firebase_options.dart';
+import 'package:organizer/pages/home_page.dart';
+import 'package:organizer/pages/login_page.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
-void main() {
-  runApp(const MyApp());
+
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+
+  runApp(
+    MaterialApp(
+      home: const Login(),
+      routes: <String, WidgetBuilder>{
+        '/login': (BuildContext context) => const Login(),
+        '/home': (BuildContext context) => const HomePage(),
+      },
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -30,17 +49,17 @@ class MyApp extends StatelessWidget {
         //
         // This works for code too, not just values: Most code changes can be
         // tested with just a hot reload.
-        colorScheme: ColorScheme.fromSeed(seedColor: Color.fromRGBO(150, 150, 150, 1)),
+        colorScheme: ColorScheme.fromSeed(seedColor: Color.fromRGBO(150, 150, 150,1 )),
         primaryColor: Color.fromRGBO(13, 166, 95, 1),
         useMaterial3: true,
       ),
-      home: const MyHomePage(),
+      home: const Login(),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key});
+class Login extends StatefulWidget {
+  const Login({super.key});
 
   // This widget is the home page of your application. It is stateful, meaning
   // that it has a State object (defined below) that contains fields that affect
@@ -54,10 +73,10 @@ class MyHomePage extends StatefulWidget {
   
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<Login> createState() => _LoginState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _LoginState extends State<Login> {
 
   void _incrementCounter() {
     setState(() {
@@ -76,6 +95,9 @@ class _MyHomePageState extends State<MyHomePage> {
     // The Flutter framework has been optimized to make rerunning build methods
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
-    return MainPage();
+    return Scaffold(
+        backgroundColor: AppColors.black,
+        body:LoginPage()
+      );
   }
 }

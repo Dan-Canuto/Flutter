@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "773870966171",
+    "project_id": "pessoal-61cbe",
+    "storage_bucket": "pessoal-61cbe.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:773870966171:android:e6a3997e006f0ef1e4fd3e",
+        "android_client_info": {
+          "package_name": "com.example.organizer"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCjpAmGJ8_I8P4QVYknzGfBl9amdHgCq6g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
