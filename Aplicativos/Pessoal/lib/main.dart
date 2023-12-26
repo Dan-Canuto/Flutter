@@ -17,6 +17,7 @@ Future<void> main() async {
 
   runApp(
     MaterialApp(
+      color: AppColors.black,
       home: const Home(),
       routes: <String, WidgetBuilder>{
         '/Home': (BuildContext context) => const Home(),

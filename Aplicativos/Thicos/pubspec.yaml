@@ -40,7 +40,7 @@ dependencies:
   dropdown_button2: ^2.3.8
   easy_sidemenu: ^0.5.0
   item_selector: ^0.2.0
-  expansion_tile_card: ^3.0.0
+  accordion: ^2.6.0
 
 dev_dependencies:
   flutter_test:

@@ -1,4 +1,4 @@
-import 'package:expansion_tile_card/expansion_tile_card.dart';
+import 'package:accordion/accordion.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:thicos/models/caminhoes.dart';
@@ -16,8 +16,11 @@ class manutencaoList extends StatefulWidget {
 }
 
 class _manutencaoListState extends State<manutencaoList> {
+  
   @override
+  
   Widget build(BuildContext context) {
+  
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -28,112 +31,61 @@ class _manutencaoListState extends State<manutencaoList> {
           child: ListView(
             shrinkWrap: true,
             children: [
-              ExpansionTileCard(
-                baseColor: Color.fromRGBO(46, 49, 75, 1),
-                expandedColor: Color.fromRGBO(46, 49, 75, 1),
-                expandedTextColor: Colors.white,
-                title: Row(
-                  children: [
-                    Icon(
-                      Icons.looks_one,
-                      color: Colors.white,
-                    ),
-                    Text(
-                      "Freios",
-                      style: TextStyle(
-                        color: Colors.white,
-                      ),
-                    ),
-                  ],
-                ),
+              Accordion(
+                headerBorderColor: Colors.blueGrey,
+                headerBorderColorOpened: Colors.transparent,
+                // headerBorderWidth: 1,
+                headerBackgroundColorOpened: Colors.green,
+                contentBackgroundColor: Colors.white,
+                contentBorderColor: Colors.green,
+                contentBorderWidth: 3,
+                contentHorizontalPadding: 20,
+                scaleWhenAnimating: true,
+                openAndCloseAnimation: true,
+                headerPadding:
+                    const EdgeInsets.symmetric(vertical: 7, horizontal: 15),
                 children: [
-                  ExpandedMenuItems(detalhes: selectComponente("Freio"))
+                  AccordionSection(
+                    isOpen: true,
+                    contentVerticalPadding: 20,
+                    leftIcon:
+                        const Icon(Icons.text_fields_rounded, color: Colors.white),
+                    header: const Text('Freio'),
+                    content: const Text('Teste'),
+                  ),
+                  AccordionSection(
+                    isOpen: true,
+                    contentVerticalPadding: 20,
+                    leftIcon:
+                        const Icon(Icons.text_fields_rounded, color: Colors.white),
+                    header: const Text('Óleo de Motor'),
+                    content: const Text('Teste'),
+                  ),
+                  AccordionSection(
+                    isOpen: true,
+                    contentVerticalPadding: 20,
+                    leftIcon:
+                        const Icon(Icons.text_fields_rounded, color: Colors.white),
+                    header: const Text('Manutenção Mecânica'),
+                    content: const Text('Teste'),
+                  ),
+                  AccordionSection(
+                    isOpen: true,
+                    contentVerticalPadding: 20,
+                    leftIcon:
+                        const Icon(Icons.text_fields_rounded, color: Colors.white),
+                    header: const Text('Câmbiio'),
+                    content: const Text('Teste'),
+                  ),
+                  AccordionSection(
+                    isOpen: true,
+                    contentVerticalPadding: 20,
+                    leftIcon:
+                        const Icon(Icons.text_fields_rounded, color: Colors.white),
+                    header: const Text('Diferêncial'),
+                    content: const Text('Teste'),
+                  ),
                 ],
-              ),
-              ExpansionTileCard(
-                baseColor: Color.fromRGBO(46, 49, 75, 1),
-                expandedColor: Color.fromRGBO(46, 49, 75, 1),
-                expandedTextColor: Colors.white,
-                title: Row(
-                  children: [
-                    Icon(
-                      Icons.looks_3,
-                      color: Colors.white,
-                    ),
-                    Text(
-                      "Óleo do motor",
-                      style: TextStyle(
-                        color: Colors.white,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              ExpansionTileCard(
-                baseColor: Color.fromRGBO(46, 49, 75, 1),
-                expandedColor: Color.fromRGBO(46, 49, 75, 1),
-                expandedTextColor: Colors.white,
-                title: Row(
-                  children: [
-                    Icon(
-                      Icons.looks_5,
-                      color: Colors.white,
-                    ),
-                    Text(
-                      "Manutenção Mecânica",
-                      style: TextStyle(
-                        color: Colors.white,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ),
-        ),
-        Container(
-          height: MediaQuery.of(context).size.height * 0.4,
-          width: MediaQuery.of(context).size.width * 0.375,
-          child: ListView(
-            shrinkWrap: true,
-            children: [
-              ExpansionTileCard(
-                baseColor: Color.fromRGBO(46, 49, 75, 1),
-                expandedColor: Color.fromRGBO(46, 49, 75, 1),
-                expandedTextColor: Colors.white,
-                title: Row(
-                  children: [
-                    Icon(
-                      Icons.looks_two,
-                      color: Colors.white,
-                    ),
-                    Text(
-                      "Câmbio",
-                      style: TextStyle(
-                        color: Colors.white,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              ExpansionTileCard(
-                baseColor: Color.fromRGBO(46, 49, 75, 1),
-                expandedColor: Color.fromRGBO(46, 49, 75, 1),
-                expandedTextColor: Colors.white,
-                title: Row(
-                  children: [
-                    Icon(
-                      Icons.looks_4,
-                      color: Colors.white,
-                    ),
-                    Text(
-                      "Diferencial",
-                      style: TextStyle(
-                        color: Colors.white,
-                      ),
-                    ),
-                  ],
-                ),
               ),
             ],
           ),
