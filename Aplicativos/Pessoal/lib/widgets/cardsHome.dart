@@ -20,32 +20,22 @@ class CardsHome extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              GestureDetector(
-                onTap: (){
-                  print("foi");
-                } ,
-                child: Card(
-                  elevation: 10,
-                  color: AppColors.c5,
-                  child: Container(
-                    height: mediaQuery.size.height * 0.3,
-                    width: mediaQuery.size.width * 0.45,
-                    child: CardsHomeContent(blackCard: false,),
-                  ),
+              Card(
+                elevation: 10,
+                color: AppColors.c5,
+                child: Container(
+                  height: mediaQuery.size.height * 0.3,
+                  width: mediaQuery.size.width * 0.45,
+                  child: CardsHomeContent(blackCard: false, name: "Academia",),
                 ),
               ),
-              GestureDetector(
-                onTap: (){
-                  print("foi");
-                } ,
-                child: Card(
-                  elevation: 10,
-                  color: AppColors.black1,
-                  child: Container(
-                    height: mediaQuery.size.height * 0.3,
-                    width: mediaQuery.size.width * 0.45,
-                    child: CardsHomeContent(blackCard: true,),
-                  ),
+              Card(
+                elevation: 10,
+                color: AppColors.black1,
+                child: Container(
+                  height: mediaQuery.size.height * 0.3,
+                  width: mediaQuery.size.width * 0.45,
+                  child: CardsHomeContent(blackCard: true, name: "Trabalho"),
                 ),
               ),
             ],
@@ -56,32 +46,22 @@ class CardsHome extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              GestureDetector(
-                onTap: (){
-                  print("foi");
-                } ,
-                child: Card(
-                  elevation: 10,
-                  color: AppColors.black1,
-                  child: Container(
-                    height: mediaQuery.size.height * 0.3,
-                    width: mediaQuery.size.width * 0.45,
-                    child: CardsHomeContent(blackCard: true,),
-                  ),
+              Card(
+                elevation: 10,
+                color: AppColors.black1,
+                child: Container(
+                  height: mediaQuery.size.height * 0.3,
+                  width: mediaQuery.size.width * 0.45,
+                  child: CardsHomeContent(blackCard: true, name: "Meta"),
                 ),
               ),
-              GestureDetector(
-                onTap: (){
-                  print("foi");
-                } ,
-                child: Card(
-                  elevation: 10,
-                  color: AppColors.c5,
-                  child: Container(
-                    height: mediaQuery.size.height * 0.3,
-                    width: mediaQuery.size.width * 0.45,
-                    child: CardsHomeContent(blackCard: false,),
-                  ),
+              Card(
+                elevation: 10,
+                color: AppColors.c5,
+                child: Container(
+                  height: mediaQuery.size.height * 0.3,
+                  width: mediaQuery.size.width * 0.45,
+                  child: CardsHomeContent(blackCard: false,name: "Receita"),
                 ),
               ),
             ],
@@ -92,32 +72,22 @@ class CardsHome extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              GestureDetector(
-                onTap: (){
-                  print("foi");
-                } ,
-                child: Card(
-                  elevation: 10,
-                  color: AppColors.c5,
-                  child: Container(
-                    height: mediaQuery.size.height * 0.3,
-                    width: mediaQuery.size.width * 0.45,
-                    child: CardsHomeContent(blackCard: false,),
-                  ),
+              Card(
+                elevation: 10,
+                color: AppColors.c5,
+                child: Container(
+                  height: mediaQuery.size.height * 0.3,
+                  width: mediaQuery.size.width * 0.45,
+                  child: CardsHomeContent(blackCard: false, name: "Estudo",),
                 ),
               ),
-              GestureDetector(
-                onTap: (){
-                  print("foi");
-                } ,
-                child: Card(
-                  elevation: 10,
-                  color: AppColors.black1,
-                  child: Container(
-                    height: mediaQuery.size.height * 0.3,
-                    width: mediaQuery.size.width * 0.45,
-                    child: CardsHomeContent(blackCard: true,),
-                  ),
+              Card(
+                elevation: 10,
+                color: AppColors.black1,
+                child: Container(
+                  height: mediaQuery.size.height * 0.3,
+                  width: mediaQuery.size.width * 0.45,
+                  child: CardsHomeContent(blackCard: true, name: "Nota",),
                 ),
               ),
             ],
