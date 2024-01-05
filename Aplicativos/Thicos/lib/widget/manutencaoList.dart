@@ -1,106 +1,107 @@
-import 'package:accordion/accordion.dart';
+import 'package:expandable/expandable.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:thicos/models/caminhoes.dart';
 import 'package:thicos/models/manutencao.dart';
+import 'package:thicos/widget/contentManutencao.dart';
 import 'package:thicos/widget/expandedMenuItems.dart';
 
-class manutencaoList extends StatefulWidget {
-  const manutencaoList(
-      {super.key, required this.caminhao, required this.manuItems});
+class ManutencaoList extends StatefulWidget {
+  const ManutencaoList(
+      {super.key, required this.caminhao});
 
   final Caminhao caminhao;
-  final List<Manutencao> manuItems;
   @override
-  State<manutencaoList> createState() => _manutencaoListState();
+  State<ManutencaoList> createState() => _manutencaoListState();
 }
 
-class _manutencaoListState extends State<manutencaoList> {
-  
+class _manutencaoListState extends State<ManutencaoList> {
   @override
   
   Widget build(BuildContext context) {
-  
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisAlignment: MainAxisAlignment.spaceAround,
-      children: [
-        Container(
-          height: MediaQuery.of(context).size.height * 0.45,
-          width: MediaQuery.of(context).size.width * 0.375,
-          child: ListView(
-            shrinkWrap: true,
+    final mediaQuery =MediaQuery.of(context);
+    return Container(
+      height: mediaQuery.size.height * 0.55,
+      padding: EdgeInsets.symmetric(vertical: mediaQuery.size.height * 0.025),
+      child: ListView(
+        shrinkWrap: true,
+        children: [
+          SizedBox(
+            height: mediaQuery.size.height * 0.005,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Accordion(
-                headerBorderColor: Colors.blueGrey,
-                headerBorderColorOpened: Colors.transparent,
-                // headerBorderWidth: 1,
-                headerBackgroundColorOpened: Colors.green,
-                contentBackgroundColor: Colors.white,
-                contentBorderColor: Colors.green,
-                contentBorderWidth: 3,
-                contentHorizontalPadding: 20,
-                scaleWhenAnimating: true,
-                openAndCloseAnimation: true,
-                headerPadding:
-                    const EdgeInsets.symmetric(vertical: 7, horizontal: 15),
-                children: [
-                  AccordionSection(
-                    isOpen: true,
-                    contentVerticalPadding: 20,
-                    leftIcon:
-                        const Icon(Icons.text_fields_rounded, color: Colors.white),
-                    header: const Text('Freio'),
-                    content: const Text('Teste'),
-                  ),
-                  AccordionSection(
-                    isOpen: true,
-                    contentVerticalPadding: 20,
-                    leftIcon:
-                        const Icon(Icons.text_fields_rounded, color: Colors.white),
-                    header: const Text('Óleo de Motor'),
-                    content: const Text('Teste'),
-                  ),
-                  AccordionSection(
-                    isOpen: true,
-                    contentVerticalPadding: 20,
-                    leftIcon:
-                        const Icon(Icons.text_fields_rounded, color: Colors.white),
-                    header: const Text('Manutenção Mecânica'),
-                    content: const Text('Teste'),
-                  ),
-                  AccordionSection(
-                    isOpen: true,
-                    contentVerticalPadding: 20,
-                    leftIcon:
-                        const Icon(Icons.text_fields_rounded, color: Colors.white),
-                    header: const Text('Câmbiio'),
-                    content: const Text('Teste'),
-                  ),
-                  AccordionSection(
-                    isOpen: true,
-                    contentVerticalPadding: 20,
-                    leftIcon:
-                        const Icon(Icons.text_fields_rounded, color: Colors.white),
-                    header: const Text('Diferêncial'),
-                    content: const Text('Teste'),
-                  ),
-                ],
+              Card(
+                elevation: 20,
+                color: Colors.white,
+                child: Container(
+                  height: mediaQuery.size.height * 0.45,
+                  width: mediaQuery.size.width * 0.25,
+                  child: ContentManutencao(name: 'Freios', caminhao: widget.caminhao, title: 'Freios',),
+                ),
+              ),
+              Card(
+                elevation: 20,
+                color: Colors.white,
+                child: Container(
+                  height: mediaQuery.size.height * 0.45,
+                  width: mediaQuery.size.width * 0.25,
+                  child: ContentManutencao(name: 'ManutencaoMecanica', caminhao: widget.caminhao, title: 'Manutenção Mecânica',),
+                ),
+              ),
+              Card(
+                elevation: 20,
+                color: Colors.white,
+                child: Container(
+                  height: mediaQuery.size.height * 0.45,
+                  width: mediaQuery.size.width * 0.25,
+                  child: ContentManutencao(name: 'Diferencial', caminhao: widget.caminhao, title: 'Diferêncial',),
+                ),
               ),
             ],
           ),
-        ),
-      ],
+          SizedBox(
+            height: mediaQuery.size.height * 0.005,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Card(
+                elevation: 20,
+                color: Colors.white,
+                child: Container(
+                  height: mediaQuery.size.height * 0.45,
+                  width: mediaQuery.size.width * 0.25,
+                  child: ContentManutencao(name: 'oleoDoMotor', caminhao: widget.caminhao, title: 'Óleo do motor',),
+                ),
+              ),
+               Card(
+                elevation: 20,
+                color: Colors.white,
+                child: Container(
+                  height: mediaQuery.size.height * 0.45,
+                  width: mediaQuery.size.width * 0.25,
+                  child: ContentManutencao(name: 'Cambio', caminhao: widget.caminhao, title: 'Câmbio',),
+                ),
+              ),
+            ],
+          ),
+          SizedBox(
+            height: mediaQuery.size.height * 0.005,
+          ),
+        ],
+      ),
     );
   }
 
-  Manutencao? selectComponente(String componente) {
-    for (int i = 0; i < widget.manuItems.length; i++) {
-      if (widget.manuItems[i].ativo == true &&
-          widget.manuItems[i].componente == componente) {
-        return widget.manuItems[i];
-      }
-    }
-    return null;
-  }
+  // Manutencao? selectComponente(String componente) {
+  //   for (int i = 0; i < widget.manuItems.length; i++) {
+  //     if (widget.manuItems[i].ativo == true &&
+  //         widget.manuItems[i].componente == componente) {
+  //       return widget.manuItems[i];
+  //     }
+  //   }
+  //   return null;
+  // }
 }

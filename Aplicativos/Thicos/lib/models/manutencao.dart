@@ -3,7 +3,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 class Manutencao {
   final bool ativo;
   final String caminhao;
-  final String componente;
   final Timestamp dataRealizacao;
   final Timestamp dataVencimento;
   final String mecanico;
@@ -14,7 +13,6 @@ class Manutencao {
   Manutencao(
     this.ativo,
     this.caminhao,
-    this.componente,
     this.dataRealizacao,
     this.dataVencimento,
     this.mecanico,
@@ -26,7 +24,6 @@ class Manutencao {
   Manutencao.fromJson(Map<String, dynamic> json)
       : ativo = json['ativo'],
         caminhao = json['caminhao'],
-        componente = json['componente'],
         dataRealizacao = json['dataRealizacao'],
         dataVencimento = json['dataVencimento'],
         mecanico = json['mecanico'],
@@ -38,7 +35,6 @@ class Manutencao {
     return {
       'ativo': ativo,
       'caminhao': caminhao,
-      'componente': componente,
       'dataRealizacao': dataRealizacao,
       'dataVencimento': dataVencimento,
       'mecanino': mecanico,
