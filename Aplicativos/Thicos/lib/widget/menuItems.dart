@@ -57,7 +57,7 @@ class MenuItems {
       case MenuItems.sair:
         Navigator.pushReplacementNamed(
           context,
-          '/login',
+          '/home',
         );
 
         break;

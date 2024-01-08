@@ -1,7 +1,6 @@
 import 'dart:html';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:expansion_tile_card/expansion_tile_card.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:thicos/models/caminhoes.dart';
@@ -200,7 +199,7 @@ class _ManutencaoPageState extends State<ManutencaoPage> {
             height: MediaQuery.of(context).size.height * 0.02,
           ),
           Container(
-            height: MediaQuery.of(context).size.height * 0.15,
+            height: MediaQuery.of(context).size.height * 0.1,
             width: MediaQuery.of(context).size.width * 0.7,
             padding: EdgeInsets.all(8),
             decoration: BoxDecoration(
@@ -224,21 +223,8 @@ class _ManutencaoPageState extends State<ManutencaoPage> {
               ],
             ),
             child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Container(
-                  margin: EdgeInsets.only(right: 8),
-                  height: MediaQuery.of(context).size.width * 0.1,
-                  width: MediaQuery.of(context).size.width * 0.1,
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                      color: Color.fromRGBO(46, 49, 75, 1),
-                      width: 2,
-                    ),
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(8),
-                    ),
-                  ),
-                ),
                 SizedBox(
                   width: MediaQuery.of(context).size.width * 0.1,
                   child: Column(
@@ -320,60 +306,19 @@ class _ManutencaoPageState extends State<ManutencaoPage> {
           SizedBox(
             height: MediaQuery.of(context).size.height * 0.025,
           ),
-          FutureBuilder(
-              future: filtroManuItems(),
-              builder: (BuildContext context,
-                  AsyncSnapshot<List<Manutencao>> snapshot) {
-                return manutencaoList(caminhao: select!, manuItems: filtroList);
-              })
+          // FutureBuilder(
+          //     future: filtroManuItems(),
+          //     builder: (BuildContext context,
+          //         AsyncSnapshot<List<Manutencao>> snapshot) {
+          //       return manutencaoList(caminhao: select!);
+          //     })
+          ManutencaoList(caminhao: select!), //
         ],
       );
     }
   }
 
-  Future<List<Manutencao>> filtroManuItems() async {
-    fetchRecords();
-    FirebaseFirestore.instance.collection('Manutencao').snapshots().listen(
-      (records) {
-        mapRecords(records);
-      },
-    );
-    return filtroList;
-  }
-
-  fetchRecords() async {
-    var records = await FirebaseFirestore.instance
-        .collection("Manutenção")
-        .where("caminhao", isEqualTo: select!.placa)
-        .get();
-    mapRecords(records);
-  }
-
-  mapRecords(QuerySnapshot<Map<String, dynamic>> records) {
-    var list = records.docs
-        .map(
-          (manu) => Manutencao(
-            manu['ativo'],
-            manu['caminhao'],
-            manu['componente'],
-            manu['dataRealizacao'],
-            manu['dataVencimento'],
-            manu['mecanico'],
-            manu['notaFiscal'],
-            manu['observacao'],
-            manu['valor'],
-          ),
-        )
-        .toList();
-    if (this.mounted) {
-      setState(
-        () {
-          // TODO: implement setState
-          filtroList = list;
-        },
-      );
-    }
-  }
+  
 
   void pesquisa() {
     if (_formKey.currentState!.validate()) {

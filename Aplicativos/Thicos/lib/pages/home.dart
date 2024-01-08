@@ -53,364 +53,391 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     final mediaQuery = MediaQuery.of(context);
 
-    return Material(
-      color: Color.fromARGB(255, 245, 243, 251),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Container(
-            height: mediaQuery.size.height * 0.15,
-            width: mediaQuery.size.width,
-            decoration: BoxDecoration(
-              color: Color.fromRGBO(5, 33, 58, 1),
-              boxShadow: const [
-                BoxShadow(
-                    color: Color.fromRGBO(36, 37, 51, 0.678),
-                    blurRadius: 8,
-                    offset: Offset(
-                      0,
-                      8,
-                    )),
-              ],
-              border: Border.symmetric(
-                horizontal: BorderSide(
-                  width: 4,
-                  color: Color.fromRGBO(5, 33, 58, 0.6),
+    return SafeArea(
+      child: Material(
+        color: Color.fromARGB(255, 245, 243, 251),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Container(
+              height: mediaQuery.size.height * 0.15,
+              width: mediaQuery.size.width,
+              decoration: BoxDecoration(
+                color: Color.fromRGBO(5, 33, 58, 1),
+                boxShadow: const [
+                  BoxShadow(
+                      color: Color.fromRGBO(36, 37, 51, 0.678),
+                      blurRadius: 8,
+                      offset: Offset(
+                        0,
+                        8,
+                      )),
+                ],
+                border: Border.symmetric(
+                  horizontal: BorderSide(
+                    width: 4,
+                    color: Color.fromRGBO(5, 33, 58, 0.6),
+                  ),
                 ),
               ),
-            ),
-            child: Row(
-              children: [
-                ConstrainedBox(
-                  constraints: BoxConstraints(
-                    minWidth: 60,
-                    minHeight: 60,
-                  ),
-                  child: Container(
-                    margin: EdgeInsets.symmetric(
-                        horizontal: mediaQuery.size.width * 0.04),
-                    height: mediaQuery.size.width < 600
-                        ? mediaQuery.size.width * 0.16
-                        : mediaQuery.size.height * 0.12,
-                    width: mediaQuery.size.width < 600
-                        ? mediaQuery.size.width * 0.16
-                        : mediaQuery.size.height * 0.12,
-                    decoration: BoxDecoration(
-                      boxShadow: const [
-                        BoxShadow(
-                            color: Colors.black87,
-                            blurRadius: 5,
-                            offset: Offset(
-                              0,
-                              3,
-                            )),
-                      ],
-                      image: DecorationImage(
-                        image: AssetImage('assets/images/logo.jpeg'),
-                      ),
-                      color: Colors.white,
-                      border: Border.all(
-                        width: 2,
-                        color: Colors.black87,
-                      ),
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(20),
-                      ),
+              child: Row(
+                children: [
+                  ConstrainedBox(
+                    constraints: BoxConstraints(
+                      minWidth: 60,
+                      minHeight: 60,
                     ),
-                    //child: Image.asset('assets/images/logo.jpeg'),
-                  ),
-                ),
-                Flexible(
-                  flex: 6,
-                  child: Center(
-                    child: Text(
-                      'GERENCIAMENTO THICOS',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontSize: mediaQuery.size.width < 800 ? 30 : 40,
-                        fontFamily: 'RobotoCondensed',
-                        fontWeight: FontWeight.w700,
-                        color: Colors.white,
-                        shadows: <Shadow>[
-                          Shadow(
-                            offset: Offset(1, 1),
-                            blurRadius: 2.0,
-                            color: Colors.black,
-                          ),
+                    child: Container(
+                      margin: EdgeInsets.symmetric(
+                          horizontal: mediaQuery.size.width * 0.04),
+                      height: mediaQuery.size.width < 600
+                          ? mediaQuery.size.width * 0.16
+                          : mediaQuery.size.height * 0.12,
+                      width: mediaQuery.size.width < 600
+                          ? mediaQuery.size.width * 0.16
+                          : mediaQuery.size.height * 0.12,
+                      decoration: BoxDecoration(
+                        boxShadow: const [
+                          BoxShadow(
+                              color: Colors.black87,
+                              blurRadius: 5,
+                              offset: Offset(
+                                0,
+                                3,
+                              )),
                         ],
-                      ),
-                    ),
-                  ),
-                ),
-                DropdownButtonHideUnderline(
-                  child: DropdownButton2(
-                    customButton: ConstrainedBox(
-                      constraints: BoxConstraints(
-                        minWidth: 60,
-                        minHeight: 60,
-                      ),
-                      child: Container(
-                        margin: EdgeInsets.symmetric(
-                            horizontal: mediaQuery.size.width * 0.04),
-                        height: mediaQuery.size.width < 600
-                            ? mediaQuery.size.width * 0.16
-                            : mediaQuery.size.height * 0.12,
-                        width: mediaQuery.size.width < 800
-                            ? mediaQuery.size.width * 0.16
-                            : mediaQuery.size.height * 0.12,
-                        decoration: BoxDecoration(
-                          boxShadow: const [
-                            BoxShadow(
-                                color: Colors.black87,
-                                blurRadius: 5,
-                                offset: Offset(
-                                  0,
-                                  3,
-                                )),
-                          ],
-                          color: Color.fromRGBO(149, 122, 86, 1),
-                          border: Border.all(color: Colors.black87, width: 2),
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(20),
-                          ),
+                        image: DecorationImage(
+                          image: AssetImage('assets/images/logo.jpeg'),
                         ),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Flexible(
-                              flex: 3,
-                              child: Icon(
-                                Icons.person,
-                                color: Colors.white,
-                                size: mediaQuery.size.width < 800
-                                    ? mediaQuery.size.width * 0.08
-                                    : mediaQuery.size.height * 0.08,
-                              ),
-                            ),
-                            Flexible(
-                              flex: 1,
-                              child: Text(
-                                widget.perfil.nome,
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontFamily: 'RobotoCondensed',
-                                    fontWeight: FontWeight.w700),
-                              ),
-                            ),
-                            Flexible(
-                              flex: 1,
-                              child: Icon(
-                                Icons.arrow_drop_down,
-                                color: Colors.white,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    items: [
-                      ...MenuItems.firstItems.map(
-                        (item) => DropdownMenuItem<MenuItem>(
-                          value: item,
-                          child: MenuItems.buildItem(item),
-                        ),
-                      ),
-                      const DropdownMenuItem<Divider>(
-                          enabled: false, child: Divider()),
-                      ...MenuItems.secondItems.map(
-                        (item) => DropdownMenuItem<MenuItem>(
-                          value: item,
-                          child: MenuItems.buildItem(item),
-                        ),
-                      ),
-                    ],
-                    onChanged: (value) {
-                      MenuItems.onChanged(context, value! as MenuItem);
-                    },
-                    buttonStyleData: ButtonStyleData(
-                      // This is necessary for the ink response to match our customButton radius.
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(40),
-                      ),
-                    ),
-                    dropdownStyleData: DropdownStyleData(
-                      width: 160,
-                      padding: const EdgeInsets.symmetric(vertical: 6),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(4),
-                        color: Color.fromRGBO(149, 122, 86, 1),
+                        color: Colors.white,
                         border: Border.all(
+                          width: 2,
                           color: Colors.black87,
-                          width: 1,
                         ),
-                      ),
-                      offset: Offset(
-                          mediaQuery.size.width < 600
-                              ? mediaQuery.size.height * 0.02
-                              : mediaQuery.size.width * 0.016,
-                          0),
-                    ),
-                    menuItemStyleData: MenuItemStyleData(
-                      customHeights: [
-                        ...List<double>.filled(MenuItems.firstItems.length, 48),
-                        8,
-                        ...List<double>.filled(
-                            MenuItems.secondItems.length, 48),
-                      ],
-                      padding: const EdgeInsets.only(left: 16, right: 16),
-                    ),
-                  ),
-                ),
-                //child: Image.asset('assets/images/logo.jpeg'),
-              ],
-            ),
-          ),
-          Padding(
-            padding: EdgeInsets.fromLTRB(
-              mediaQuery.size.width * 0.012,
-              0,
-              mediaQuery.size.width * 0.012,
-              mediaQuery.size.height * 0.025,
-            ),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Container(
-                      height: mediaQuery.size.height * 0.5,
-                      width: mediaQuery.size.width * 0.16,
-                      padding: EdgeInsets.symmetric(
-                          vertical: mediaQuery.size.height * 0.01,
-                          horizontal: mediaQuery.size.width * 0.01),
-                      decoration: BoxDecoration(
-                        color: Color.fromRGBO(5, 33, 58, 1),
                         borderRadius: BorderRadius.all(
                           Radius.circular(20),
                         ),
-                        border: Border.all(
-                          width: 4,
-                          color: Color.fromRGBO(5, 33, 58, 0.6),
+                      ),
+                      //child: Image.asset('assets/images/logo.jpeg'),
+                    ),
+                  ),
+                  Flexible(
+                    flex: 6,
+                    child: Center(
+                      child: Text(
+                        'GERENCIAMENTO THICOS',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: mediaQuery.size.width < 800 ? 30 : 40,
+                          fontFamily: 'RobotoCondensed',
+                          fontWeight: FontWeight.w700,
+                          color: Colors.white,
+                          shadows: <Shadow>[
+                            Shadow(
+                              offset: Offset(1, 1),
+                              blurRadius: 2.0,
+                              color: Colors.black,
+                            ),
+                          ],
                         ),
-                        boxShadow: const [
-                          BoxShadow(
+                      ),
+                    ),
+                  ),
+                  DropdownButtonHideUnderline(
+                    child: DropdownButton2(
+                      customButton: ConstrainedBox(
+                        constraints: BoxConstraints(
+                          minWidth: 60,
+                          minHeight: 60,
+                        ),
+                        child: Container(
+                          margin: EdgeInsets.symmetric(
+                              horizontal: mediaQuery.size.width * 0.04),
+                          height: mediaQuery.size.width < 600
+                              ? mediaQuery.size.width * 0.16
+                              : mediaQuery.size.height * 0.12,
+                          width: mediaQuery.size.width < 800
+                              ? mediaQuery.size.width * 0.16
+                              : mediaQuery.size.height * 0.12,
+                          decoration: BoxDecoration(
+                            boxShadow: const [
+                              BoxShadow(
+                                  color: Colors.black87,
+                                  blurRadius: 5,
+                                  offset: Offset(
+                                    0,
+                                    3,
+                                  )),
+                            ],
+                            color: Color.fromRGBO(149, 122, 86, 1),
+                            border: Border.all(color: Colors.black87, width: 2),
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(20),
+                            ),
+                          ),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Flexible(
+                                flex: 3,
+                                child: Icon(
+                                  Icons.person,
+                                  color: Colors.white,
+                                  size: mediaQuery.size.width < 800
+                                      ? mediaQuery.size.width * 0.08
+                                      : mediaQuery.size.height * 0.08,
+                                ),
+                              ),
+                              Flexible(
+                                flex: 1,
+                                child: Text(
+                                  widget.perfil.nome,
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontFamily: 'RobotoCondensed',
+                                      fontWeight: FontWeight.w700),
+                                ),
+                              ),
+                              Flexible(
+                                flex: 1,
+                                child: Icon(
+                                  Icons.arrow_drop_down,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      items: [
+                        ...MenuItems.firstItems.map(
+                          (item) => DropdownMenuItem<MenuItem>(
+                            value: item,
+                            child: MenuItems.buildItem(item),
+                          ),
+                        ),
+                        const DropdownMenuItem<Divider>(
+                            enabled: false, child: Divider()),
+                        ...MenuItems.secondItems.map(
+                          (item) => DropdownMenuItem<MenuItem>(
+                            value: item,
+                            child: MenuItems.buildItem(item),
+                          ),
+                        ),
+                      ],
+                      onChanged: (value) {
+                        MenuItems.onChanged(context, value! as MenuItem);
+                      },
+                      buttonStyleData: ButtonStyleData(
+                        // This is necessary for the ink response to match our customButton radius.
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(40),
+                        ),
+                      ),
+                      dropdownStyleData: DropdownStyleData(
+                        width: 160,
+                        padding: const EdgeInsets.symmetric(vertical: 6),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(4),
+                          color: Color.fromRGBO(149, 122, 86, 1),
+                          border: Border.all(
+                            color: Colors.black87,
+                            width: 1,
+                          ),
+                        ),
+                        offset: Offset(
+                            mediaQuery.size.width < 600
+                                ? mediaQuery.size.height * 0.02
+                                : mediaQuery.size.width * 0.016,
+                            0),
+                      ),
+                      menuItemStyleData: MenuItemStyleData(
+                        customHeights: [
+                          ...List<double>.filled(MenuItems.firstItems.length, 48),
+                          8,
+                          ...List<double>.filled(
+                              MenuItems.secondItems.length, 48),
+                        ],
+                        padding: const EdgeInsets.only(left: 16, right: 16),
+                      ),
+                    ),
+                  ),
+                  //child: Image.asset('assets/images/logo.jpeg'),
+                ],
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.fromLTRB(
+                mediaQuery.size.width * 0.012,
+                0,
+                mediaQuery.size.width * 0.012,
+                mediaQuery.size.height * 0.025,
+              ),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Container(
+                        height: mediaQuery.size.height * 0.5,
+                        width: mediaQuery.size.width * 0.16,
+                        padding: EdgeInsets.symmetric(
+                            vertical: mediaQuery.size.height * 0.01,
+                            horizontal: mediaQuery.size.width * 0.01),
+                        decoration: BoxDecoration(
+                          color: Color.fromRGBO(5, 33, 58, 1),
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(20),
+                          ),
+                          border: Border.all(
+                            width: 4,
+                            color: Color.fromRGBO(5, 33, 58, 0.6),
+                          ),
+                          boxShadow: const [
+                            BoxShadow(
+                                color: Color.fromRGBO(36, 37, 51, 0.678),
+                                blurRadius: 8,
+                                offset: Offset(
+                                  4,
+                                  8,
+                                )),
+                          ],
+                        ),
+                        child: SideMenu(
+                          style: SideMenuStyle(
+                            // showTooltip: false,
+                            displayMode: SideMenuDisplayMode.auto,
+                            hoverColor: Color.fromRGBO(149, 122, 86, 1),
+                            selectedHoverColor: Color.fromRGBO(149, 122, 86, 1),
+                            selectedColor: Color.fromRGBO(149, 122, 86, 1),
+                            selectedTitleTextStyle:
+                                const TextStyle(color: Colors.white),
+                            selectedIconColor: Color.fromARGB(255, 245, 243, 251),
+                            unselectedTitleTextStyle: TextStyle(
+                              color: Color.fromARGB(255, 245, 243, 251),
+                            ),
+                            unselectedIconColor:
+                                Color.fromARGB(255, 245, 243, 251),
+                            itemInnerSpacing: 20,
+                            compactSideMenuWidth: 200,
+                          ),
+                          controller: sideMenu,
+                          title: Center(
+                            child: Container(
+                              margin: EdgeInsets.only(top: 4, bottom: 12),
+                              width: mediaQuery.size.width * 0.08,
+                              decoration: BoxDecoration(
+                                color: Color.fromRGBO(149, 122, 86, 1),
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(16),
+                                ),
+                              ),
+                              child: Text(
+                                'MENU',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                    fontFamily: 'Roboto Condensed',
+                                    fontWeight: FontWeight.w700,
+                                    fontSize: 16,
+                                    color: Color.fromARGB(255, 245, 243, 251)),
+                              ),
+                            ),
+                          ),
+                          onDisplayModeChanged: (mode) {
+                            print(mode);
+                          },
+                          items: [
+                            SideMenuItem(
+                              title: 'Dashboard',
+                              onTap: (index, _) {
+                                sideMenu.changePage(index);
+                                setState(() {
+                                  selecionado = null;
+                                });
+                              },
+                              icon: Icon(Icons.align_vertical_bottom),
+                            ),
+                            SideMenuItem(
+                              title: 'Caminhões',
+                              onTap: (index, _) {
+                                sideMenu.changePage(index);
+                                setState(() {
+                                  selecionado = null;
+                                });
+                              },
+                              icon: Icon(Icons.fire_truck_outlined),
+                            ),
+                            SideMenuItem(
+                              title: 'Calendário',
+                              onTap: (index, _) {
+                                sideMenu.changePage(index);
+                                setState(() {
+                                  selecionado = null;
+                                });
+                              },
+                              icon: Icon(Icons.calendar_month),
+                            ),
+                            SideMenuItem(
+                              title: 'Manutenção',
+                              onTap: (index, _) {
+                                sideMenu.changePage(index);
+                              },
+                              icon: Icon(Icons.settings),
+                            ),
+                            SideMenuItem(
+                              title: 'Registro',
+                              onTap: (index, _) {
+                                sideMenu.changePage(index);
+                                setState(() {
+                                  selecionado = null;
+                                });
+                              },
+                              icon: Icon(Icons.library_books),
+                              // badgeContent: Text(
+                              //   '3',
+                              //   style: TextStyle(color: Colors.white),
+                              // ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Container(
+                        margin:
+                            EdgeInsets.only(top: mediaQuery.size.height * 0.02),
+                        width: mediaQuery.size.width * 0.16,
+                        height: mediaQuery.size.height * 0.28,
+                        decoration: BoxDecoration(
+                          color: Color.fromRGBO(5, 33, 58, 1),
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(20),
+                          ),
+                          boxShadow: const [
+                            BoxShadow(
                               color: Color.fromRGBO(36, 37, 51, 0.678),
                               blurRadius: 8,
                               offset: Offset(
                                 4,
                                 8,
-                              )),
-                        ],
-                      ),
-                      child: SideMenu(
-                        style: SideMenuStyle(
-                          // showTooltip: false,
-                          displayMode: SideMenuDisplayMode.auto,
-                          hoverColor: Color.fromRGBO(149, 122, 86, 1),
-                          selectedHoverColor: Color.fromRGBO(149, 122, 86, 1),
-                          selectedColor: Color.fromRGBO(149, 122, 86, 1),
-                          selectedTitleTextStyle:
-                              const TextStyle(color: Colors.white),
-                          selectedIconColor: Color.fromARGB(255, 245, 243, 251),
-                          unselectedTitleTextStyle: TextStyle(
-                            color: Color.fromARGB(255, 245, 243, 251),
-                          ),
-                          unselectedIconColor:
-                              Color.fromARGB(255, 245, 243, 251),
-                          itemInnerSpacing: 20,
-                          compactSideMenuWidth: 200,
-                        ),
-                        controller: sideMenu,
-                        title: Center(
-                          child: Container(
-                            margin: EdgeInsets.only(top: 4, bottom: 12),
-                            width: mediaQuery.size.width * 0.08,
-                            decoration: BoxDecoration(
-                              color: Color.fromRGBO(149, 122, 86, 1),
-                              borderRadius: BorderRadius.all(
-                                Radius.circular(16),
                               ),
                             ),
-                            child: Text(
-                              'MENU',
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                  fontFamily: 'Roboto Condensed',
-                                  fontWeight: FontWeight.w700,
-                                  fontSize: 16,
-                                  color: Color.fromARGB(255, 245, 243, 251)),
-                            ),
-                          ),
+                          ],
                         ),
-                        onDisplayModeChanged: (mode) {
-                          print(mode);
-                        },
-                        items: [
-                          SideMenuItem(
-                            title: 'Dashboard',
-                            onTap: (index, _) {
-                              sideMenu.changePage(index);
-                              setState(() {
-                                selecionado = null;
-                              });
-                            },
-                            icon: Icon(Icons.align_vertical_bottom),
-                          ),
-                          SideMenuItem(
-                            title: 'Caminhões',
-                            onTap: (index, _) {
-                              sideMenu.changePage(index);
-                              setState(() {
-                                selecionado = null;
-                              });
-                            },
-                            icon: Icon(Icons.fire_truck_outlined),
-                          ),
-                          SideMenuItem(
-                            title: 'Calendário',
-                            onTap: (index, _) {
-                              sideMenu.changePage(index);
-                              setState(() {
-                                selecionado = null;
-                              });
-                            },
-                            icon: Icon(Icons.calendar_month),
-                          ),
-                          SideMenuItem(
-                            title: 'Manutenção',
-                            onTap: (index, _) {
-                              sideMenu.changePage(index);
-                            },
-                            icon: Icon(Icons.settings),
-                          ),
-                          SideMenuItem(
-                            title: 'Registro',
-                            onTap: (index, _) {
-                              sideMenu.changePage(index);
-                              setState(() {
-                                selecionado = null;
-                              });
-                            },
-                            icon: Icon(Icons.library_books),
-                            // badgeContent: Text(
-                            //   '3',
-                            //   style: TextStyle(color: Colors.white),
-                            // ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Container(
+                      )
+                    ],
+                  ),
+                  Expanded(
+                    child: Container(
+                      height: mediaQuery.size.height * 0.8,
+                      padding: EdgeInsets.all(8),
                       margin:
-                          EdgeInsets.only(top: mediaQuery.size.height * 0.02),
-                      width: mediaQuery.size.width * 0.16,
-                      height: mediaQuery.size.height * 0.28,
+                          EdgeInsets.only(left: mediaQuery.size.width * 0.012),
                       decoration: BoxDecoration(
-                        color: Color.fromRGBO(5, 33, 58, 1),
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(20),
+                        color: Color.fromRGBO(149, 122, 86, 1),
+                        border: Border.all(
+                          width: 4,
+                          color: Color.fromRGBO(149, 122, 86, 0.6),
                         ),
                         boxShadow: const [
                           BoxShadow(
@@ -422,60 +449,35 @@ class _MyHomePageState extends State<MyHomePage> {
                             ),
                           ),
                         ],
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(20),
+                        ),
                       ),
-                    )
-                  ],
-                ),
-                Expanded(
-                  child: Container(
-                    height: mediaQuery.size.height * 0.8,
-                    padding: EdgeInsets.all(8),
-                    margin:
-                        EdgeInsets.only(left: mediaQuery.size.width * 0.012),
-                    decoration: BoxDecoration(
-                      color: Color.fromRGBO(149, 122, 86, 1),
-                      border: Border.all(
-                        width: 4,
-                        color: Color.fromRGBO(149, 122, 86, 0.6),
-                      ),
-                      boxShadow: const [
-                        BoxShadow(
-                          color: Color.fromRGBO(36, 37, 51, 0.678),
-                          blurRadius: 8,
-                          offset: Offset(
-                            4,
-                            8,
+                      child: PageView(
+                        allowImplicitScrolling: false,
+                        controller: pageController,
+                        children: [
+                          DashboardPage(),
+                          CaminhoesPage(
+                            camItems: widget.camItems,
+                            encaminhamento: encaminhamento,
                           ),
-                        ),
-                      ],
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(20),
+                          CalendarioPage(),
+                          ManutencaoPage(
+                            selecionado: selecionado,
+                            camItems: widget.camItems,
+                            manuItems: widget.manuItems,
+                          ),
+                          RegistroPage(),
+                        ],
                       ),
-                    ),
-                    child: PageView(
-                      allowImplicitScrolling: false,
-                      controller: pageController,
-                      children: [
-                        DashboardPage(),
-                        CaminhoesPage(
-                          camItems: widget.camItems,
-                          encaminhamento: encaminhamento,
-                        ),
-                        CalendarioPage(),
-                        ManutencaoPage(
-                          selecionado: selecionado,
-                          camItems: widget.camItems,
-                          manuItems: widget.manuItems,
-                        ),
-                        RegistroPage(),
-                      ],
                     ),
                   ),
-                ),
-              ],
-            ),
-          )
-        ],
+                ],
+              ),
+            )
+          ],
+        ),
       ),
     );
   }

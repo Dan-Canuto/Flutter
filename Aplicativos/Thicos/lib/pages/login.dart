@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:thicos/main.dart';
 import 'package:thicos/models/caminhoes.dart';
 import 'package:thicos/models/manutencao.dart';
 import 'package:thicos/models/perfis.dart';
@@ -75,7 +74,6 @@ class _LoginState extends State<Login> {
               (manu) => Manutencao(
                 manu['ativo'],
                 manu['caminhao'],
-                manu['componente'],
                 manu['dataRealizacao'],
                 manu['dataVencimento'],
                 manu['mecanico'],
