@@ -10,7 +10,7 @@ class CardsHomeContent extends StatelessWidget {
   Widget build(BuildContext context) {
     Color color = blackCard ? AppColors.c5 : AppColors.black1;
     List<dynamic>? content = SelectContentCards(name);
-    print(content);
+    Widget show = content![2];
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: GestureDetector(
@@ -31,11 +31,12 @@ class CardsHomeContent extends StatelessWidget {
             ),
             Container(
               height: MediaQuery.of(context).size.height * 0.2,
+              width: MediaQuery.of(context).size.width * 0.4,
               decoration: BoxDecoration(
                 color: AppColors.white,
                 borderRadius: BorderRadius.circular(50),
               ),
-
+              child:show,
             ),
             Icon(
               content?[1],
